@@ -9,6 +9,7 @@
 <!doctype html>
 <html class="no-js">
 <head>
+<base href="<%=basePath%>">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Amaze UI Admin form Examples</title>
@@ -66,87 +67,50 @@
 	</header>
 
 	<div class="am-cf admin-main">
-		<!-- sidebar start -->
-		<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-			<div class="am-offcanvas-bar admin-offcanvas-bar">
-				<ul class="am-list admin-sidebar-list">
-					<li><a href="admin-index.html"><span class="am-icon-home"></span>
-							首页</a></li>
-					<li class="admin-parent"><a class="am-cf"
-						data-am-collapse="{target: '#collapse-nav'}"><span
-							class="am-icon-file"></span> 页面模块 <span
-							class="am-icon-angle-right am-fr am-margin-right"></span></a>
-						<ul class="am-list am-collapse admin-sidebar-sub am-in"
-							id="collapse-nav">
-							<li><a href="admin-user.html" class="am-cf"><span
-									class="am-icon-check"></span> 个人资料<span
-									class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-							<li><a href="admin-help.html"><span
-									class="am-icon-puzzle-piece"></span> 帮助页</a></li>
-							<li><a href="admin-gallery.html"><span
-									class="am-icon-th"></span> 相册页面<span
-									class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
-							<li><a href="admin-log.html"><span
-									class="am-icon-calendar"></span> 系统日志</a></li>
-							<li><a href="admin-404.html"><span class="am-icon-bug"></span>
-									404</a></li>
-						</ul></li>
-					<li><a href="admin-table.html"><span class="am-icon-table"></span>
-							表格</a></li>
-					<li><a href="admin-form.html"><span
-							class="am-icon-pencil-square-o"></span> 表单</a></li>
-					<li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
-				</ul>
-
-				<div class="am-panel am-panel-default admin-sidebar-panel">
-					<div class="am-panel-bd">
-						<p>
-							<span class="am-icon-bookmark"></span> 公告
-						</p>
-						<p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
-					</div>
-				</div>
-
-				<div class="am-panel am-panel-default admin-sidebar-panel">
-					<div class="am-panel-bd">
-						<p>
-							<span class="am-icon-tag"></span> wiki
-						</p>
-						<p>Welcome to the Amaze UI wiki!</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- sidebar end -->
-
 		<!-- content start -->
+
 		<div class="admin-content">
-			<div class="admin-content-body">
-				<div class="am-cf am-padding am-padding-bottom-0">
-					<div class="am-fl am-cf">
-						<strong class="am-text-primary am-text-lg">表单</strong> / <small>form</small>
+			<form method="post" class="am-form" action="doadd">
+				<div class="admin-content-body">
+					<div class="am-cf am-padding am-padding-bottom-0">
+						<div class="am-fl am-cf">
+							<strong class="am-text-primary am-text-lg">表单</strong> / <small>form</small>
+						</div>
 					</div>
-				</div>
 
-				<hr>
+					<hr>
 
-				<div class="am-tabs am-margin" data-am-tabs>
-					<ul class="am-tabs-nav am-nav am-nav-tabs">
-						<li class="am-active"><a href="#tab1">基本信息</a></li>
-						<li><a href="#tab2">详细描述</a></li>
-						<li><a href="#tab3">SEO 选项</a></li>
-					</ul>
+					<div class="am-tabs am-margin" data-am-tabs>
+						<ul class="am-tabs-nav am-nav am-nav-tabs">
+							<li class="am-active"><a href="toadd#tab1">个人基本信息</a></li>
+							<li><a href="toadd#tab2">个人学业信息</a></li>
+							<li><a href="toadd#tab3">信息调研</a></li>
+						</ul>
 
-					<div class="am-tabs-bd">
+						<div class="am-tabs-bd">
+							<div class="am-tab-panel am-fade am-in am-active" id="tab1">
 
-						<div class="am-tab-panel am-fade am-in am-active" id="tab1">
-							<form method="post" class="am-form" action="doadd">
 								<div class="am-g am-margin-top"></div>
 								<label for="studentsName"
 									class="am-u-sm-4 am-u-md-2 am-text-right">姓名:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsName" id="studentsName"
-										value="">
+										value="" placeholder="请输入姓名">
+								</div>
+
+								<div class="am-g am-margin-top">
+									<label for="studentsPhoto"
+										class="am-u-sm-4 am-u-md-2 am-text-right">照片:</label>
+									<div class="am-u-sm-8 am-u-md-4">
+										<input type="file" name="studentsPhoto" id="studentsPhoto"
+											value="">
+									</div>
+								</div>
+								<br /> <br /> <label for="studentsAge"
+									class="am-u-sm-4 am-u-md-2 am-text-right">年龄:</label>
+								<div class="am-u-sm-8 am-u-md-4">
+									<input type="text" name="studentsAge" id="studentsAge" value=""
+										placeholder="请输入年龄">
 								</div>
 								<br /> <br /> <label for="studentsSex"
 									class="am-u-sm-4 am-u-md-2 am-text-right">性别:</label>&nbsp;
@@ -157,133 +121,186 @@
 									class="am-u-sm-4 am-u-md-2 am-text-right">手机号码:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsMobile" id="studentsMobile"
-										value="">
+										value="" placeholder="请输入手机号码">
 								</div>
-								<br> <br /> <label for="studentsAge"
-									class="am-u-sm-4 am-u-md-2 am-text-right">年龄:</label>
-								<div class="am-u-sm-8 am-u-md-4">
-									<input type="text" name="studentsAge" id="studentsAge" value="">
-								</div>
-								<br /> <br /> <label for="studentsSchool"
+								<br> <br /> <label for="studentsSchool"
 									class="am-u-sm-4 am-u-md-2 am-text-right">学校:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsSchool" id="studentsSchool"
-										value="">
+										value="" placeholder="请输入学校">
 								</div>
 								<br /> <br /> <label for="studentsDepartment"
 									class="am-u-sm-4 am-u-md-2 am-text-right">院系:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsDepartment"
-										id="studentsDepartment" value="">
+										id="studentsDepartment" value="" placeholder="请输入院系">
 								</div>
 								<br /> <br /> <label for="studentsMajor"
 									class="am-u-sm-4 am-u-md-2 am-text-right">专业:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsMajor" id="studentsMajor"
-										value="">
+										value="" placeholder="请输入专业">
+								</div>
+								<br> <br /> <label for="studentsQq"
+									class="am-u-sm-4 am-u-md-2 am-text-right">常用QQ:</label>
+								<div class="am-u-sm-8 am-u-md-4">
+									<input type="text" name="studentsQq" id="studentsQq" value=""
+										placeholder="请输入QQ">
+								</div>
+								<br> <br /> <label for="studentsTeacher"
+									class="am-u-sm-4 am-u-md-2 am-text-right">老师:</label>
+								<div class="am-u-sm-8 am-u-md-4">
+									<input type="text" name="studentsTeacher" id="studentsTeacher"
+										value="" placeholder="请输入老师">
+								</div>
+								<br> <br /> <label for="studentsIdno"
+									class="am-u-sm-4 am-u-md-2 am-text-right">身份证号码:</label>
+								<div class="am-u-sm-8 am-u-md-4">
+									<input type="text" name="studentsIdno" id="studentsIdno"
+										value="" placeholder="请输入身份证号码">
 								</div>
 								<br> <br /> <label for="studentsEmail"
-									class="am-u-sm-4 am-u-md-2 am-text-right">邮箱:</label>
+									class="am-u-sm-4 am-u-md-2 am-text-right">电子邮箱:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="email" name="studentsEmail" id="studentsEmail"
-										value="">
+										value="" placeholder="请输入电子邮箱">
 								</div>
-								<br /> <br /> <label for="studentsFx"
-									class="am-u-sm-4 am-u-md-2 am-text-right">学习方向:</label>&nbsp;
+								<br /> <br /> <label for="studentsIfcadre"
+									class="am-u-sm-4 am-u-md-2 am-text-right">是否学生干部:</label>&nbsp;
+								&nbsp; <input type="radio" name="studentsIfcadre"
+									id="studentsIfcadre" checked="checked" value="是" />是&nbsp;
+								&nbsp; <input type="radio" name="studentsIfcadre"
+									id="studentsIfcadre" value="否" />否 <br /> <br /> <label
+									for="studentsHomeaddress"
+									class="am-u-sm-4 am-u-md-2 am-text-right">家庭住址:</label>
+								<div class="am-u-sm-2 am-u-md-4" style="float:left">
+									<input type="text" name="studentsHomeaddress"
+										id="studentsHomeaddress" value="" placeholder="请输入家庭住址">
+								</div>
+							</div>
+
+							<div class="am-tab-panel am-fade" id="tab2">
+								<div class="am-g am-margin-top"></div>
+								<label for="studentsFx"
+									class="am-u-sm-4 am-u-md-2 am-text-right">HP专业方向:</label>&nbsp;
 								&nbsp; <input type="radio" name="studentsFx" id="studentsFx"
-									value="软件测试工程师" />软件测试工程师&nbsp; &nbsp; <input type="radio"
-									name="studentsFx" id="studentsFx" value=".NET开发工程师" />.NET开发工程师&nbsp;
-								&nbsp; <input type="radio" name="studentsFx" id="studentsFx"
-									value="软件开发工程师" />java开发工程师&nbsp; &nbsp;
-							</form>
-
-						</div>
-
-						<div class="am-tab-panel am-fade" id="tab2">
-							<form class="am-form">
-								<div class="am-g am-margin-top">
-									<div class="am-u-sm-4 am-u-md-2 am-text-right">文章标题</div>
-									<div class="am-u-sm-8 am-u-md-4">
-										<input type="text" class="am-input-sm">
-									</div>
-									<div class="am-hide-sm-only am-u-md-6">*必填，不可重复</div>
+									value="软件测试工程师" checked="checked" />软件测试工程师&nbsp; &nbsp; <input
+									type="radio" name="studentsFx" id="studentsFx"
+									value=".NET开发工程师" />.NET开发工程师&nbsp; &nbsp; <input type="radio"
+									name="studentsFx" id="studentsFx" value="软件开发工程师" />软件开发工程师&nbsp;
+								&nbsp; <br /> <br /> <label for="studentsIfadjust"
+									class="am-u-sm-4 am-u-md-2 am-text-right">是否接受调剂:</label>&nbsp;
+								&nbsp; <input type="radio" name="studentsIfadjust"
+									id="studentsIfadjust" checked="checked" value="是" />是&nbsp;
+								&nbsp; <input type="radio" name="studentsIfadjust"
+									id="studentsIfadjust" value="否" />否 <br /> <br /> <label
+									for="studentsMajorcourses"
+									class="am-u-sm-4 am-u-md-2 am-text-right">主要专业课程:</label>
+								<div class="am-u-sm-8 am-u-md-4">
+									<input type="text" name="studentsMajorcourses"
+										id="studentsMajorcourses" value="" placeholder="请输入在校的专业课程">
 								</div>
-
-								<div class="am-g am-margin-top">
-									<div class="am-u-sm-4 am-u-md-2 am-text-right">文章作者</div>
-									<div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
-										<input type="text" class="am-input-sm">
-									</div>
+								<br /> <br /> <label for="studentsIfjoinactivity"
+									class="am-u-sm-4 am-u-md-2 am-text-right">是否参与过计算机类活动:</label>
+								<div class="am-u-sm-8 am-u-md-4">
+									<input type="text" name="studentsIfjoinactivity"
+										id="studentsIfjoinactivity" placeholder="项目/比赛" />
 								</div>
-
-								<div class="am-g am-margin-top">
-									<div class="am-u-sm-4 am-u-md-2 am-text-right">信息来源</div>
-									<div class="am-u-sm-8 am-u-md-4">
-										<input type="text" class="am-input-sm">
-									</div>
-									<div class="am-hide-sm-only am-u-md-6">选填</div>
+								<br /> <br /> <br /> <label for="studentsScholarship"
+									class="am-u-sm-4 am-u-md-2 am-text-right">是否得过奖学金:</label>&nbsp;
+								&nbsp; <input type="radio" name="studentsScholarship"
+									id="studentsScholarship" checked="checked" value="是" />是&nbsp;
+								&nbsp; <input type="radio" name="studentsScholarship"
+									id="studentsScholarship" value="否" />否 <br /> <br /> <label
+									for="studentsRelatedqualifications"
+									class="am-u-sm-4 am-u-md-2 am-text-right">计算机相关资质:</label>
+								<div class="am-u-sm-8 am-u-md-4">
+									<input type="text" name="studentsRelatedqualifications"
+										id="studentsRelatedqualifications" placeholder="无/相关证书" />
 								</div>
-
-								<div class="am-g am-margin-top">
-									<div class="am-u-sm-4 am-u-md-2 am-text-right">内容摘要</div>
-									<div class="am-u-sm-8 am-u-md-4">
-										<input type="text" class="am-input-sm">
-									</div>
-									<div class="am-u-sm-12 am-u-md-6">不填写则自动截取内容前255字符</div>
+								<br /> <br /> <label for="studentsComputerlanguage"
+									class="am-u-sm-4 am-u-md-2 am-text-right">计算机语言类相关课程:</label>
+								<div class="am-u-sm-8 am-u-md-4" style="float:left">
+									<input type="text" name="studentsComputerlanguage"
+										id="studentsComputerlanguage" value="" placeholder="无/语言名称">
 								</div>
+							</div>
 
-								<div class="am-g am-margin-top-sm">
-									<div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">
-										内容描述</div>
-									<div class="am-u-sm-12 am-u-md-10">
-										<textarea rows="10" placeholder="请使用富文本编辑插件"></textarea>
-									</div>
-								</div>
+							<div class="am-tab-panel am-fade" id="tab3">
+								<div class="am-g am-margin-top-sm"></div>
+								<label for="studentsMethod"
+									class="am-u-sm-4 am-u-md-2 am-text-right">何种方式得知HP实训:</label>&nbsp;
+								&nbsp; <input type="checkbox" name="studentsMethod"
+									id="studentsMethod" value="校内宣传" />校内宣传 &nbsp; &nbsp; <input
+									type="checkbox" name="studentsMethod" id="studentsMethod"
+									value="学校推荐" />学校推荐&nbsp; &nbsp; <input type="checkbox"
+									name="studentsMethod" id="studentsMethod" value="学长推荐" />学长推荐&nbsp;
+								&nbsp; <input type="checkbox" name="studentsMethod"
+									id="studentsMethod" value="其他" />其他&nbsp; &nbsp; <input
+									type="checkbox" name="studentsMethod" id="studentsMethod"
+									value="从未听说" />从未听说&nbsp; &nbsp; <br /> <br /> <br /> <label
+									for="studentsPlan" class="am-u-sm-4 am-u-md-2 am-text-right">大四规划:</label>&nbsp;
+								&nbsp; <input type="checkbox" name="studentsPlan"
+									id="studentsPlan" value="准备考研" />准备考研 &nbsp; &nbsp; <input
+									type="checkbox" name="studentsPlan" id="studentsPlan"
+									value="实习就业" />实习就业&nbsp; &nbsp; <input type="checkbox"
+									name="studentsPlan" id="studentsPlan" value="自主创业" />自主创业&nbsp;
+								&nbsp; <input type="checkbox" name="studentsPlan"
+									id="studentsPlan" value="出国深造" />出国深造&nbsp; &nbsp; <input
+									type="checkbox" name="studentsPlan" id="studentsPlan"
+									value="其他" />其他&nbsp; &nbsp; <br /> <br /> <label
+									for="studentsConfidence"
+									class="am-u-sm-4 am-u-md-2 am-text-right">对自己找到满意工作的信心:</label>&nbsp;
+								&nbsp; <input type="checkbox" name="studentsConfidence"
+									id="studentsConfidence" value="没把握" />没把握 &nbsp; &nbsp; <input
+									type="checkbox" name="studentsConfidence"
+									id="studentsConfidence" value="碰运气" />碰运气&nbsp; &nbsp; <input
+									type="checkbox" name="studentsConfidence"
+									id="studentsConfidence" value="有一定把握" />有一定把握&nbsp; &nbsp; <input
+									type="checkbox" name="studentsConfidence"
+									id="studentsConfidence" value="非常有把握" />非常有把握&nbsp; &nbsp; <br />
+								<br /> <br /> <label for="studentsCare"
+									class="am-u-sm-4 am-u-md-2 am-text-right"> 参加实训的顾虑:</label>&nbsp;
+								&nbsp; <input type="checkbox" name="studentsCare"
+									id="studentsCare" value="费用" />费用 &nbsp; &nbsp; <input
+									type="checkbox" name="studentsCare" id="studentsCare"
+									value="课程" />课程&nbsp; &nbsp; <input type="checkbox"
+									name="studentsCare" id="studentsCare" value="师资" />师资&nbsp;
+								&nbsp; <input type="checkbox" name="studentsCare"
+									id="studentsCare" value="实习创业就业" />实习创业就业&nbsp; &nbsp; <input
+									type="checkbox" name="studentsCare" id="studentsCare"
+									value="其他" />其他&nbsp; &nbsp; <br /> <br /> <label
+									for="studentsJob" class="am-u-sm-4 am-u-md-2 am-text-right">
+									希望从事哪类岗位:</label>&nbsp; &nbsp; <input type="checkbox"
+									name="studentsJob" id="studentsJob" value="研发测试" />研发测试 &nbsp;
+								&nbsp; <input type="checkbox" name="studentsJob"
+									id="studentsJob" value="商务支撑" />商务支撑&nbsp; &nbsp; <input
+									type="checkbox" name="studentsJob" id="studentsJob"
+									value="工程实施" />工程实施&nbsp; &nbsp; <input type="checkbox"
+									name="studentsJob" id="studentsJob" value="质量控制" />质量控制&nbsp;
+								&nbsp; <input type="checkbox" name="studentsJob"
+									id="studentsJob" value="项目管理" />项目管理&nbsp; &nbsp;
+							</div>
 
-							</form>
-						</div>
-
-						<div class="am-tab-panel am-fade" id="tab3">
-							<form class="am-form">
-								<div class="am-g am-margin-top-sm">
-									<div class="am-u-sm-4 am-u-md-2 am-text-right">SEO 标题</div>
-									<div class="am-u-sm-8 am-u-md-4 am-u-end">
-										<input type="text" class="am-input-sm">
-									</div>
-								</div>
-
-								<div class="am-g am-margin-top-sm">
-									<div class="am-u-sm-4 am-u-md-2 am-text-right">SEO 关键字</div>
-									<div class="am-u-sm-8 am-u-md-4 am-u-end">
-										<input type="text" class="am-input-sm">
-									</div>
-								</div>
-
-								<div class="am-g am-margin-top-sm">
-									<div class="am-u-sm-4 am-u-md-2 am-text-right">SEO 描述</div>
-									<div class="am-u-sm-8 am-u-md-4 am-u-end">
-										<textarea rows="4"></textarea>
-									</div>
-								</div>
-							</form>
 						</div>
 
 					</div>
 				</div>
-
 				<div class="am-margin">
-					<button type="button" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+					<input type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存
+					</button>
 					<button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
 				</div>
-			</div>
-
-			<footer class="admin-content-footer">
-				<hr>
-				<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed
-					under MIT license.</p>
-			</footer>
+			</form>
 		</div>
-		<!-- content end -->
+
+		<footer class="admin-content-footer">
+			<hr>
+			<p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed
+				under MIT license.</p>
+		</footer>
+	</div>
+	<!-- content end -->
 
 	</div>
 
