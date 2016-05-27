@@ -33,7 +33,7 @@ public class StudentsDAOImpl implements StudentsDAO {
 	 * 添加报名学生
 	 */
 	@Override
-	public void add(Students stu) throws Exception {
+	public void addStudent(Students stu) throws Exception {
 
 		try {
 			getHibernateTemplate().save(stu);
@@ -88,10 +88,12 @@ public class StudentsDAOImpl implements StudentsDAO {
 	 * @throws Exception
 	 */
 	@Override
-	public void delete(Students stu) throws Exception {
+	public void del(Students stu) throws Exception {
 		// TODO Auto-generated method stub
 		try {
-			getHibernateTemplate().delete(stu);
+			getHibernateTemplate().delete(
+					getHibernateTemplate().get(Students.class,
+							stu.getStudentsId()));
 		} catch (Exception e) {
 			throw new Exception(e);
 		}

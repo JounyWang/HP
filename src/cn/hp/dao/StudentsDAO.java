@@ -11,9 +11,9 @@ public interface StudentsDAO {
 	 * @param stu
 	 * @throws Exception
 	 */
-	public void add(Students stu) throws Exception;
+	public void addStudent(Students stu) throws Exception;
 
-	public void delete(Students stu) throws Exception;
+	public void del(Students stu) throws Exception;
 
 	public void find(Students stu) throws Exception;
 

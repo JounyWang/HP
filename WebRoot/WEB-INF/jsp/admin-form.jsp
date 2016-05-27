@@ -287,7 +287,8 @@
 					</div>
 				</div>
 				<div class="am-margin">
-					<input type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存
+					<input type="submit" value="提交保存"
+						class="am-btn am-btn-primary am-btn-xs">
 					</button>
 					<button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
 				</div>

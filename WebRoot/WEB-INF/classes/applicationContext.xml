@@ -10,13 +10,15 @@
 	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
-	<!-- <aop:aspectj-autoproxy /> -->
+	<aop:aspectj-autoproxy />
+
 	<context:component-scan base-package="cn.hp">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Service" />
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Repository" />
 	</context:component-scan>
+
 	<!-- 将系统的hibernate数据库连接交给Spring管理 -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">

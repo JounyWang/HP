@@ -9,6 +9,15 @@
 <!doctype html>
 <html class="no-js">
 <head>
+<Script type="text/javaScript">
+	function Delete(id) {
+		alert("655555555556");
+		if (confirm("确定要删除吗？")) {
+			location.href = "todelete?studentsid=" + ${Ss};
+			alert("2111111111");
+		}
+	}
+</Script>
 <base href="<%=basePath%>">
 
 <meta charset="utf-8">
@@ -91,7 +100,7 @@
 
 					<li class="admin-parent"><a class="am-cf"
 						data-am-collapse="{target: '#collapse-nav'}"><span
-							class="am-icon-file"></span> 院校模块 <span
+							class="am-icon-file"></span> 院系模块 <span
 							class="am-icon-angle-right am-fr am-margin-right"></span></a>
 						<ul class="am-list am-collapse admin-sidebar-sub am-in"
 							id="collapse-nav">
@@ -168,11 +177,13 @@
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-form-group">
 							<select data-am-selected="{btnSize: 'sm'}">
-								<option value="option1">分类检索</option>
-								<option value="option2">学校</option>
-								<option value="option3">性别</option>
-								<option value="option3">学习方向</option>
-
+								<option value="option1">所有类别</option>
+								<option value="option2">IT业界</option>
+								<option value="option3">数码产品</option>
+								<option value="option3">笔记本电脑</option>
+								<option value="option3">平板电脑</option>
+								<option value="option3">只能手机</option>
+								<option value="option3">超极本</option>
 							</select>
 						</div>
 					</div>
@@ -196,11 +207,11 @@
 										<th class="table-check"><input type="checkbox" /></th>
 										<th class="table-id">ID</th>
 										<th class="table-title">姓名</th>
-										<th class="table-title">性别</th>
+										<th class="table-type">性别</th>
 										<th class="table-type">学校</th>
 										<th class="table-author am-hide-sm-only">专业</th>
-										<th class="table-author am-hide-sm-only">学习方向</th>
-										<th class="table-date am-hide-sm-only">手机号</th>
+										<th class="table-date am-hide-sm-only">方向</th>
+										<th class="table-date am-hide-sm-only">手机号码</th>
 										<th class="table-set">操作</th>
 									</tr>
 								</thead>
@@ -230,7 +241,8 @@
 															<span class="am-icon-copy"></span>详细信息
 														</button>
 														<button type="button"
-															class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+															class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
+															onclick="location.href='todelete?studentsId=${Ss.studentsId}'">
 															<span class="am-icon-trash-o"></span> 删除
 														</button>
 													</div>
@@ -248,11 +260,11 @@
 								</tbody>
 							</table>
 							<div class="am-cf">
-								共 1 条记录
+								共 15条记录
 								<div class="am-fr">
 									<ul class="am-pagination">
 										<li class="am-disabled"><a href="#">«</a></li>
-										<li class="am-active"><a href="#">1</a></li>
+										<li class="am-active"><a href="toIndex">1</a></li>
 										<li><a href="#">2</a></li>
 										<li><a href="#">3</a></li>
 										<li><a href="#">4</a></li>
@@ -301,4 +313,5 @@
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>
 </body>
+
 </html>

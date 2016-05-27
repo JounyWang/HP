@@ -28,7 +28,7 @@ public class StudentsController {
 
 	@RequestMapping("/toadd")
 	public String toadd() {
-		return "table";
+		return "admin-form";
 	}
 
 	@RequestMapping("/doadd")
@@ -37,9 +37,10 @@ public class StudentsController {
 		HttpSession session = request.getSession();
 
 		try {
-			studao.add(stu);
+			studao.addStudent(stu);
 			return "success";
 		} catch (Exception e) {
+			e.printStackTrace();
 			session.setAttribute("REGSTATE", "添加失败");
 			return "redirect:toadd";
 		}

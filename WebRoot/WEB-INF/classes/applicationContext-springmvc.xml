@@ -17,15 +17,16 @@
 	<mvc:resources location="/assets/i/" mapping="/assets/i/**" />
 	<mvc:resources location="/assets/fonts/" mapping="/assets/fonts/**" />
 
+	<!-- 开启SpringMVC注解 -->
+	<mvc:annotation-driven />
 
 	<!-- 扫描所有包的注解 -->
-	<context:component-scan base-package="cn.hp">
+	<context:component-scan base-package="cn.hp.controller">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-	<!-- 开启SpringMVC注解 -->
-	<mvc:annotation-driven />
+
 
 
 	<!-- jsp页面解析器，当Controller返回XXX字符串时，先通过拦截器，然后该类就会在jsp/目录下，查找XXX.jsp文件 -->

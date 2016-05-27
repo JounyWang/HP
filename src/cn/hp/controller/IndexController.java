@@ -3,7 +3,6 @@ package cn.hp.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +13,7 @@ import cn.hp.dao.StudentsDAO;
 import cn.hp.entity.Students;
 
 @Controller
+@SuppressWarnings("all")
 public class IndexController {
 	// 报名学生信息
 	@Resource(name = "studentsDAO")
@@ -27,13 +27,14 @@ public class IndexController {
 		this.studao = studao;
 	}
 
-	// 删除学生信息
-	@RequestMapping("/todele")
-	public String todele(HttpServletRequest request) {
+	// 显示报名学生信息
+	@RequestMapping("/toIndex")
+	public String toIndex(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		List<Students> listdl = studao.listStudents();
 
-		session.setAttribute("listdl", listdl);
+		List<Students> listss = studao.listStudents();
+
+		session.setAttribute("listss", listss);
 		return "table";
 	}
 
@@ -47,14 +48,27 @@ public class IndexController {
 		return "admin-user";
 	}
 
-	@RequestMapping("/toIndex")
-	public String toIndex(HttpServletRequest request) {
+	// 显示详细信息
+	public String find(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		List<Students> listfd = studao.listStudents();
+
+		session.setAttribute("listfd", listfd);
+		return "admin-user";
+	}
+
+	// 删除学生信息
+	@RequestMapping("/todelete")
+	public String todelete(Students stu, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 
-		List<Students> listss = studao.listStudents();
-
-		session.setAttribute("listss", listss);
-		return "table";
-
+		try {
+			studao.del(stu);
+			System.out.println(stu);
+			return "admin-user";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:toadd";
+		}
 	}
 }
