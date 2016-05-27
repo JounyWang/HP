@@ -3,6 +3,7 @@ package cn.hp.dao;
 import java.util.List;
 
 import cn.hp.entity.Students;
+import cn.hp.util.Page;
 
 public interface StudentsDAO {
 	/**
@@ -15,12 +16,16 @@ public interface StudentsDAO {
 
 	public void del(Students stu) throws Exception;
 
-	public void find(Students stu) throws Exception;
+	public void delAll(String id) throws Exception;
+
+	public Students find(Students stu) throws Exception;
 
 	public void update(Students stu) throws Exception;
+
+	public int getCount();
 
 	/**
 	 * 显示全部学生
 	 */
-	public List<Students> listStudents();
+	public List<Students> listStudents(final Page page);
 }

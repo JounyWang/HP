@@ -168,7 +168,8 @@
 								<button type="button" class="am-btn am-btn-default">
 									<span class="am-icon-archive"></span> 审核
 								</button>
-								<button type="button" class="am-btn am-btn-default">
+								<button type="button" onclick="location.href='delAll'"
+									class="am-btn am-btn-default">
 									<span class="am-icon-trash-o"></span> 删除
 								</button>
 							</div>
@@ -177,13 +178,12 @@
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-form-group">
 							<select data-am-selected="{btnSize: 'sm'}">
-								<option value="option1">所有类别</option>
-								<option value="option2">IT业界</option>
-								<option value="option3">数码产品</option>
-								<option value="option3">笔记本电脑</option>
-								<option value="option3">平板电脑</option>
-								<option value="option3">只能手机</option>
-								<option value="option3">超极本</option>
+								<option value="option1">检索查询</option>
+								<option value="option2">姓名</option>
+								<option value="option3">学校</option>
+								<option value="option3">性别</option>
+								<option value="option3">学习方向</option>
+
 							</select>
 						</div>
 					</div>
@@ -216,10 +216,9 @@
 									</tr>
 								</thead>
 								<tbody>
-
-
-									<c:forEach var="Ss" items="${listss}">
+									<c:forEach var="Ss" items="${pu.list}">
 										<tr>
+											<!-- <c:if test="checkbox='true'">name="id"></c:if>> -->
 											<td><input type="checkbox" /></td>
 											<td>${Ss.studentsId}</td>
 											<td class="am-hide-sm-only">${Ss.studentsName}</td>
@@ -233,13 +232,10 @@
 													<div class="am-btn-group am-btn-group-xs">
 														<button type="button"
 															class="am-btn am-btn-default am-btn-xs am-text-secondary"
-															onclick="location.href='update'">
-															<span class="am-icon-pencil-square-o"></span>编辑
+															onclick="location.href='find?studentsId=${Ss.studentsId}'">
+															<span class="am-icon-pencil-square-o"></span>编辑/查看
 														</button>
-														<button type="button"
-															class="am-btn am-btn-default am-btn-xs am-hide-sm-only">
-															<span class="am-icon-copy"></span>详细信息
-														</button>
+
 														<button type="button"
 															class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
 															onclick="location.href='todelete?studentsId=${Ss.studentsId}'">
@@ -260,16 +256,14 @@
 								</tbody>
 							</table>
 							<div class="am-cf">
-								共 15条记录
+								共 10条记录
 								<div class="am-fr">
 									<ul class="am-pagination">
-										<li class="am-disabled"><a href="#">«</a></li>
-										<li class="am-active"><a href="toIndex">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li><a href="#">»</a></li>
+										<li><a href="toIndex?currentPage=1">首页</a></li>
+										<li><a href="toIndex?currentPage=${pu.page.prePage}">前一页</a></li>
+										<li><a href="toIndex?currentPage=${pu.page.currentPage}">第${pu.page.currentPage}页</a></li>
+										<li><a href="toIndex?currentPage=${pu.page.nextPage}">后一页</a></li>
+										<li><a href="toIndex?currentPage=${pu.page.endPage}">末页</a></li>
 									</ul>
 								</div>
 							</div>
