@@ -31,9 +31,10 @@
   以获得更好的体验！</p>
 <![endif]-->
 
+
 	<header class="am-topbar am-topbar-inverse admin-header">
 		<div class="am-topbar-brand">
-			<strong>Amaze UI</strong> <small>后台管理模板</small>
+			<strong><a href="toIndex">惠普-洛阳</a></strong> <small>实训后台管理</small>
 		</div>
 
 		<button
@@ -54,9 +55,11 @@
 						class="am-icon-caret-down"></span>
 				</a>
 					<ul class="am-dropdown-content">
-						<li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
-						<li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-						<li><a href="#"><span class="am-icon-power-off"></span>
+						<li><a href="toIndex"><span class="am-icon-user"></span>
+								资料</a></li>
+						<li><a href="toIndex"><span class="am-icon-cog"></span>
+								设置</a></li>
+						<li><a href="toIndex"><span class="am-icon-power-off"></span>
 								退出</a></li>
 					</ul></li>
 				<li class="am-hide-sm-only"><a href="javascript:;"

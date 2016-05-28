@@ -38,7 +38,7 @@ public class StudentsController {
 
 		try {
 			studao.addStudent(stu);
-			return "success";
+			return "redirect:toIndex";
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("REGSTATE", "添加失败");

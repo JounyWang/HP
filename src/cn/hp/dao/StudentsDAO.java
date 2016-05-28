@@ -27,5 +27,5 @@ public interface StudentsDAO {
 	/**
 	 * 显示全部学生
 	 */
-	public List<Students> listStudents(final Page page);
+	public List<Students> list(final Page page);
 }

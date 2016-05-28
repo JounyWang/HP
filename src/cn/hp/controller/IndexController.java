@@ -41,11 +41,10 @@ public class IndexController {
 
 		PageUtil pu = new PageUtil();
 
-		List<Students> listss = studao.listStudents(page);
+		List<Students> listss = studao.list(page);
 		int recordNum = studao.getCount();
-
 		pu.buildPage(page.getCurrentPage(), listss, recordNum);
-
+		session.setAttribute("recordNum", recordNum);
 		session.setAttribute("pu", pu);
 
 		return "table";
@@ -83,8 +82,7 @@ public class IndexController {
 		HttpSession session = request.getSession();
 		try {
 			studao.del(stu);
-			System.out.println(stu);
-			return "admin-user";
+			return "redirect:toIndex";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "redirect:toadd";
@@ -95,13 +93,13 @@ public class IndexController {
 	@RequestMapping("/delAll")
 	public String delAll(Students stu, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String[] delAllStu = request.getParameterValues("id");
+		String[] delAllStu = request.getParameterValues("stuId");
 		try {
 			for (String delId : delAllStu) {
 				System.out.println("************" + delId);
 				studao.delAll(delId);
 			}
-			return "admin-user";
+			return "redirect:toIndex";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "redirect:toadd";

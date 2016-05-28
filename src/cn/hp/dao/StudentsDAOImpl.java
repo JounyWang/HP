@@ -48,7 +48,7 @@ public class StudentsDAOImpl implements StudentsDAO {
 	 * 显示全部报名学生
 	 */
 	@Override
-	public List<Students> listStudents(final Page page) {
+	public List<Students> list(final Page page) {
 
 		return hibernateTemplate.executeFind(new HibernateCallback() {
 

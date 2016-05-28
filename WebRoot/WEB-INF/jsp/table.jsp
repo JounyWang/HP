@@ -43,8 +43,9 @@
 
 	<header class="am-topbar am-topbar-inverse admin-header">
 		<div class="am-topbar-brand">
-			<strong>Amaze UI</strong> <small>后台管理模板</small>
+			<strong><a href="toIndex">惠普-洛阳</a></strong> <small>实训后台管理</small>
 		</div>
+
 
 		<button
 			class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
@@ -64,9 +65,11 @@
 						class="am-icon-caret-down"></span>
 				</a>
 					<ul class="am-dropdown-content">
-						<li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
-						<li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-						<li><a href="#"><span class="am-icon-power-off"></span>
+						<li><a href="toIndex"><span class="am-icon-user"></span>
+								资料</a></li>
+						<li><a href="toIndex"><span class="am-icon-cog"></span>
+								设置</a></li>
+						<li><a href="toIndex"><span class="am-icon-power-off"></span>
 								退出</a></li>
 					</ul></li>
 				<li class="am-hide-sm-only"><a href="javascript:;"
@@ -81,7 +84,7 @@
 		<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
 			<div class="am-offcanvas-bar admin-offcanvas-bar">
 				<ul class="am-list admin-sidebar-list">
-					<li><a href="admin-index.html"><span class="am-icon-home"></span>
+					<li><a href="href="toIndex""><span class="am-icon-home"></span>
 							首页</a></li>
 					<li class="admin-parent"><a class="am-cf"
 						data-am-collapse="{target: '#collapse-nav'}"><span
@@ -89,7 +92,7 @@
 							class="am-icon-angle-right am-fr am-margin-right"></span></a>
 						<ul class="am-list am-collapse admin-sidebar-sub am-in"
 							id="collapse-nav">
-							<li><a href="admin-user.html" class="am-cf"><span
+							<li><a href="toIndex" class="am-cf"><span
 									class="am-icon-check"></span> 修改密码<span
 									class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
 							<!--<li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
@@ -98,14 +101,14 @@
             <li><a href="admin-404.html"><span class="am-icon-bug"></span> 404</a></li>-->
 						</ul></li>
 
-					<li class="admin-parent"><a class="am-cf"
+					<li class="admin-parent"><a href="toIndex" class="am-cf"
 						data-am-collapse="{target: '#collapse-nav'}"><span
-							class="am-icon-file"></span> 院系模块 <span
+							class="am-icon-file"></span> 院校模块 <span
 							class="am-icon-angle-right am-fr am-margin-right"></span></a>
 						<ul class="am-list am-collapse admin-sidebar-sub am-in"
 							id="collapse-nav">
-							<li><a href="table.html" class="am-cf"><span
-									class="am-icon-table"></span> 学生信息<span
+							<li><a href="toIndex" class="am-cf"><span
+									class="am-icon-table"></span> 报名学生信息<span
 									class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
 							<!--<li><a href="admin-help.html"><span class="am-icon-puzzle-piece"></span> 帮助页</a></li>
             <li><a href="admin-gallery.html"><span class="am-icon-th"></span> 相册页面<span class="am-badge am-badge-secondary am-margin-right am-fr">24</span></a></li>
@@ -114,13 +117,14 @@
 						</ul></li>
 
 
-					<li><a href="admin-form.html"><span
+					<li><a href="toIndex"><span
 							class="am-icon-pencil-square-o"></span> 作业提交</a></li>
-					<li><a href="admin-form.html"><span
+					<li><a href="toIndex"><span
 							class="am-icon-pencil-square-o"></span> 档案填写</a></li>
-					<li><a href="admin-form.html"><span
+					<li><a href="toIndex"><span
 							class="am-icon-pencil-square-o"></span> 统计报表</a></li>
-					<li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
+					<li><a href="toIndex"><span class="am-icon-sign-out"></span>
+							注销</a></li>
 				</ul>
 
 				<div class="am-panel am-panel-default admin-sidebar-panel">
@@ -159,14 +163,9 @@
 					<div class="am-u-sm-12 am-u-md-6">
 						<div class="am-btn-toolbar">
 							<div class="am-btn-group am-btn-group-xs">
-								<button type="button" class="am-btn am-btn-default">
+								<button type="button" onclick="location.href='toadd'"
+									class="am-btn am-btn-default">
 									<span class="am-icon-plus"></span> 新增
-								</button>
-								<button type="button" class="am-btn am-btn-default">
-									<span class="am-icon-save"></span> 保存
-								</button>
-								<button type="button" class="am-btn am-btn-default">
-									<span class="am-icon-archive"></span> 审核
 								</button>
 								<button type="button" onclick="location.href='delAll'"
 									class="am-btn am-btn-default">
@@ -178,11 +177,10 @@
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-form-group">
 							<select data-am-selected="{btnSize: 'sm'}">
-								<option value="option1">检索查询</option>
-								<option value="option2">姓名</option>
-								<option value="option3">学校</option>
+								<option value="option1">姓名</option>
+								<option value="option2">学校</option>
 								<option value="option3">性别</option>
-								<option value="option3">学习方向</option>
+								<option value="option4">学习方向</option>
 
 							</select>
 						</div>
@@ -216,10 +214,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="Ss" items="${pu.list}">
+									<c:forEach var="Ss" items="${pu.list}" varStatus="i">
 										<tr>
 											<!-- <c:if test="checkbox='true'">name="id"></c:if>> -->
-											<td><input type="checkbox" /></td>
+											<td><input type="checkbox" value="${Ss.studentsId}" /></td>
 											<td>${Ss.studentsId}</td>
 											<td class="am-hide-sm-only">${Ss.studentsName}</td>
 											<td class="am-hide-sm-only">${Ss.studentsSex}</td>
@@ -233,7 +231,7 @@
 														<button type="button"
 															class="am-btn am-btn-default am-btn-xs am-text-secondary"
 															onclick="location.href='find?studentsId=${Ss.studentsId}'">
-															<span class="am-icon-pencil-square-o"></span>编辑/查看
+															<span class="am-icon-pencil-square-o"></span>修改&nbsp;/&nbsp;查看
 														</button>
 
 														<button type="button"
@@ -256,7 +254,7 @@
 								</tbody>
 							</table>
 							<div class="am-cf">
-								共 10条记录
+								共 <strong style="color: red">${recordNum}</strong> 条学生数据
 								<div class="am-fr">
 									<ul class="am-pagination">
 										<li><a href="toIndex?currentPage=1">首页</a></li>
