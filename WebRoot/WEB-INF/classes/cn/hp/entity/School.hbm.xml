@@ -6,8 +6,8 @@
 -->
 <hibernate-mapping>
     <class name="cn.hp.entity.School" table="SCHOOL" schema="HP">
-        <id name="schoolId" type="java.math.BigDecimal">
-            <column name="SCHOOL_ID" precision="22" scale="0" />
+        <id name="schoolId" type="java.lang.Integer">
+            <column name="SCHOOL_ID" precision="5" scale="0" />
             <generator class="sequence" />
         </id>
         <property name="schoolName" type="java.lang.String">
@@ -21,7 +21,7 @@
         </property>
         <set name="departments" inverse="true">
             <key>
-                <column name="SCHOOL_ID" precision="22" scale="0" not-null="true" />
+                <column name="SCHOOL_ID" precision="5" scale="0" not-null="true" />
             </key>
             <one-to-many class="cn.hp.entity.Department" />
         </set>

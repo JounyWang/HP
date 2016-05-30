@@ -249,9 +249,12 @@
 											<br /> <br /> <label for="studentsIfcadre"
 												class="am-u-sm-4 am-u-md-2 am-text-right">是否学生干部:</label>&nbsp;
 											&nbsp; <input type="radio" name="studentsIfcadre"
-												id="studentsIfcadre" checked="checked" value="是" />是&nbsp;
-											&nbsp; <input type="radio" name="studentsIfcadre"
-												id="studentsIfcadre" value="否" />否 <br /> <br /> <label
+												id="studentsIfcadre"
+												<c:if test="${listfd.studentsIfcadre=='是'}">checked="checked"</c:if>
+												value="是" />是&nbsp; &nbsp; <input type="radio"
+												name="studentsIfcadre" id="studentsIfcadre"
+												<c:if test="${listfd.studentsIfcadre=='否'}">checked="checked"</c:if>
+												value="否" />否 <br /> <br /> <label
 												for="studentsHomeaddress"
 												class="am-u-sm-4 am-u-md-2 am-text-right">家庭住址:</label>
 											<div class="am-u-sm-2 am-u-md-4" style="float:left">
@@ -266,16 +269,21 @@
 											<label for="studentsFx"
 												class="am-u-sm-4 am-u-md-2 am-text-right">HP专业方向:</label>&nbsp;
 											&nbsp; <input type="radio" name="studentsFx" id="studentsFx"
-												value="软件测试工程师" checked="checked" />软件测试工程师&nbsp; &nbsp; <input
-												type="radio" name="studentsFx" id="studentsFx"
-												value=".NET开发工程师" />.NET开发工程师&nbsp; &nbsp; <input
-												type="radio" name="studentsFx" id="studentsFx"
-												value="软件开发工程师" />软件开发工程师&nbsp; &nbsp; <br /> <br /> <label
+												value="软件测试工程师"
+												<c:if test="${listfd.studentsFx=='软件测试'}">checked="checked"</c:if> />软件测试&nbsp;
+											&nbsp; <input type="radio" name="studentsFx" id="studentsFx"
+												<c:if test="${listfd.studentsFx=='.NET开发'}">checked="checked"</c:if>
+												value=".NET开发工程师" />.NET开发&nbsp; &nbsp; <input type="radio"
+												name="studentsFx" id="studentsFx"
+												<c:if test="${listfd.studentsFx=='java开发'}">checked="checked"</c:if>
+												value="软件开发工程师" />java开发&nbsp; &nbsp; <br /> <br /> <label
 												for="studentsIfadjust"
 												class="am-u-sm-4 am-u-md-2 am-text-right">是否接受调剂:</label>&nbsp;
 											&nbsp; <input type="radio" name="studentsIfadjust"
+												<c:if test="${listfd.studentsIfadjust=='是'}">checked="checked"</c:if>
 												id="studentsIfadjust" checked="checked" value="是" />是&nbsp;
 											&nbsp; <input type="radio" name="studentsIfadjust"
+												<c:if test="${listfd.studentsIfadjust=='否'}">checked="checked"</c:if>
 												id="studentsIfadjust" value="否" />否 <br /> <br /> <label
 												for="studentsMajorcourses"
 												class="am-u-sm-4 am-u-md-2 am-text-right">主要专业课程:</label>
@@ -296,8 +304,10 @@
 											<br /> <br /> <br /> <label for="studentsScholarship"
 												class="am-u-sm-4 am-u-md-2 am-text-right">是否得过奖学金:</label>&nbsp;
 											&nbsp; <input type="radio" name="studentsScholarship"
+												<c:if test="${listfd.studentsScholarship=='是'}">checked="checked"</c:if>
 												id="studentsScholarship" checked="checked" value="是" />是&nbsp;
 											&nbsp; <input type="radio" name="studentsScholarship"
+												<c:if test="${listfd.studentsScholarship=='否'}">checked="checked"</c:if>
 												id="studentsScholarship" value="否" />否 <br /> <br /> <label
 												for="studentsRelatedqualifications"
 												class="am-u-sm-4 am-u-md-2 am-text-right">计算机相关资质:</label>
@@ -321,55 +331,79 @@
 											<div class="am-g am-margin-top-sm"></div>
 											<label for="studentsMethod"
 												class="am-u-sm-4 am-u-md-2 am-text-right">何种方式得知HP实训:</label>&nbsp;
-											&nbsp; <input type="checkbox" name="studentsMethod"
+											&nbsp; <input type="radio" name="studentsMethod"
+												<c:if test="${listfd.studentsMethod=='校内宣传'}">checked="checked"</c:if>
 												id="studentsMethod" value="校内宣传" />校内宣传 &nbsp; &nbsp; <input
-												type="checkbox" name="studentsMethod" id="studentsMethod"
-												value="学校推荐" />学校推荐&nbsp; &nbsp; <input type="checkbox"
+												type="radio" name="studentsMethod" id="studentsMethod"
+												<c:if test="${listfd.studentsMethod=='学校推荐'}">checked="checked"</c:if>
+												value="学校推荐" />学校推荐&nbsp; &nbsp; <input type="radio"
+												<c:if test="${listfd.studentsMethod=='学长推荐'}">checked="checked"</c:if>
 												name="studentsMethod" id="studentsMethod" value="学长推荐" />学长推荐&nbsp;
-											&nbsp; <input type="checkbox" name="studentsMethod"
+											&nbsp; <input type="radio" name="studentsMethod"
+												<c:if test="${listfd.studentsMethod=='其他'}">checked="checked"</c:if>
 												id="studentsMethod" value="其他" />其他&nbsp; &nbsp; <input
-												type="checkbox" name="studentsMethod" id="studentsMethod"
+												type="radio" name="studentsMethod" id="studentsMethod"
+												<c:if test="${listfd.studentsMethod=='从未听说'}">checked="checked"</c:if>
 												value="从未听说" />从未听说&nbsp; &nbsp; <br /> <br /> <br /> <label
 												for="studentsPlan" class="am-u-sm-4 am-u-md-2 am-text-right">大四规划:</label>&nbsp;
-											&nbsp; <input type="checkbox" name="studentsPlan"
+											&nbsp; <input type="radio" name="studentsPlan"
+												<c:if test="${listfd.studentsPlan=='准备考研'}">checked="checked"</c:if>
 												id="studentsPlan" value="准备考研" />准备考研 &nbsp; &nbsp; <input
-												type="checkbox" name="studentsPlan" id="studentsPlan"
-												value="实习就业" />实习就业&nbsp; &nbsp; <input type="checkbox"
+												type="radio" name="studentsPlan" id="studentsPlan"
+												<c:if test="${listfd.studentsPlan=='实习就业'}">checked="checked"</c:if>
+												value="实习就业" />实习就业&nbsp; &nbsp; <input type="radio"
+												<c:if test="${listfd.studentsPlan=='自主创业'}">checked="checked"</c:if>
 												name="studentsPlan" id="studentsPlan" value="自主创业" />自主创业&nbsp;
-											&nbsp; <input type="checkbox" name="studentsPlan"
+											&nbsp; <input type="radio" name="studentsPlan"
+												<c:if test="${listfd.studentsPlan=='出国深造'}">checked="checked"</c:if>
 												id="studentsPlan" value="出国深造" />出国深造&nbsp; &nbsp; <input
-												type="checkbox" name="studentsPlan" id="studentsPlan"
+												type="radio" name="studentsPlan" id="studentsPlan"
+												<c:if test="${listfd.studentsPlan=='其他'}">checked="checked"</c:if>
 												value="其他" />其他&nbsp; &nbsp; <br /> <br /> <label
 												for="studentsConfidence"
-												class="am-u-sm-4 am-u-md-2 am-text-right">对自己找到满意工作的信心:</label>&nbsp;
-											&nbsp; <input type="checkbox" name="studentsConfidence"
+												class="am-u-sm-4 am-u-md-2 am-text-right">找到满意工作的信心:</label>&nbsp;
+											&nbsp; <input type="radio" name="studentsConfidence"
+												<c:if test="${listfd.studentsConfidence=='没把握'}">checked="checked"</c:if>
 												id="studentsConfidence" value="没把握" />没把握 &nbsp; &nbsp; <input
-												type="checkbox" name="studentsConfidence"
+												type="radio" name="studentsConfidence"
+												<c:if test="${listfd.studentsConfidence=='碰运气'}">checked="checked"</c:if>
 												id="studentsConfidence" value="碰运气" />碰运气&nbsp; &nbsp; <input
-												type="checkbox" name="studentsConfidence"
+												type="radio" name="studentsConfidence"
+												<c:if test="${listfd.studentsConfidence=='有一定把握'}">checked="checked"</c:if>
 												id="studentsConfidence" value="有一定把握" />有一定把握&nbsp; &nbsp;
-											<input type="checkbox" name="studentsConfidence"
+											<input type="radio" name="studentsConfidence"
+												<c:if test="${listfd.studentsConfidence=='非常有把握'}">checked="checked"</c:if>
 												id="studentsConfidence" value="非常有把握" />非常有把握&nbsp; &nbsp;
 											<br /> <br /> <br /> <label for="studentsCare"
 												class="am-u-sm-4 am-u-md-2 am-text-right"> 参加实训的顾虑:</label>&nbsp;
-											&nbsp; <input type="checkbox" name="studentsCare"
+											&nbsp; <input type="radio" name="studentsCare"
+												<c:if test="${listfd.studentsCare=='费用'}">checked="checked"</c:if>
 												id="studentsCare" value="费用" />费用 &nbsp; &nbsp; <input
-												type="checkbox" name="studentsCare" id="studentsCare"
-												value="课程" />课程&nbsp; &nbsp; <input type="checkbox"
+												type="radio" name="studentsCare" id="studentsCare"
+												<c:if test="${listfd.studentsCare=='课程'}">checked="checked"</c:if>
+												value="课程" />课程&nbsp; &nbsp; <input type="radio"
+												<c:if test="${listfd.studentsCare=='师资'}">checked="checked"</c:if>
 												name="studentsCare" id="studentsCare" value="师资" />师资&nbsp;
-											&nbsp; <input type="checkbox" name="studentsCare"
+											&nbsp; <input type="radio" name="studentsCare"
+												<c:if test="${listfd.studentsCare=='实习创业就业'}">checked="checked"</c:if>
 												id="studentsCare" value="实习创业就业" />实习创业就业&nbsp; &nbsp; <input
-												type="checkbox" name="studentsCare" id="studentsCare"
+												type="radio" name="studentsCare" id="studentsCare"
+												<c:if test="${listfd.studentsCare=='其他'}">checked="checked"</c:if>
 												value="其他" />其他&nbsp; &nbsp; <br /> <br /> <label
 												for="studentsJob" class="am-u-sm-4 am-u-md-2 am-text-right">
-												希望从事哪类岗位:</label>&nbsp; &nbsp; <input type="checkbox"
+												希望从事哪类岗位:</label>&nbsp; &nbsp; <input type="radio"
+												<c:if test="${listfd.studentsJob=='研发测试'}">checked="checked"</c:if>
 												name="studentsJob" id="studentsJob" value="研发测试" />研发测试
-											&nbsp; &nbsp; <input type="checkbox" name="studentsJob"
+											&nbsp; &nbsp; <input type="radio" name="studentsJob"
+												<c:if test="${listfd.studentsJob=='商务支撑'}">checked="checked"</c:if>
 												id="studentsJob" value="商务支撑" />商务支撑&nbsp; &nbsp; <input
-												type="checkbox" name="studentsJob" id="studentsJob"
-												value="工程实施" />工程实施&nbsp; &nbsp; <input type="checkbox"
+												type="radio" name="studentsJob" id="studentsJob"
+												<c:if test="${listfd.studentsJob=='工程实施'}">checked="checked"</c:if>
+												value="工程实施" />工程实施&nbsp; &nbsp; <input type="radio"
+												<c:if test="${listfd.studentsJob=='质量控制'}">checked="checked"</c:if>
 												name="studentsJob" id="studentsJob" value="质量控制" />质量控制&nbsp;
-											&nbsp; <input type="checkbox" name="studentsJob"
+											&nbsp; <input type="radio" name="studentsJob"
+												<c:if test="${listfd.studentsJob=='项目管理'}">checked="checked"</c:if>
 												id="studentsJob" value="项目管理" />项目管理&nbsp; &nbsp;
 										</div>
 

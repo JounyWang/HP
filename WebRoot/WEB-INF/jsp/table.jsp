@@ -12,19 +12,50 @@
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 	function selected() {
-
+		var loc = null;
 		var search = document.getElementById("search").value;
 		if (document.getElementById("studentsName").selected == true) {
-			location.href = "toIndex?category=studentsName&search=" + search
-					+ "";
+			loc = location.href = "toIndex?category=studentsName&search="
+					+ search + "";
 		} else if (document.getElementById("studentsSchool").selected == true) {
-			location.href = "toIndex?category=studentsSchool&search=" + search
-					+ "";
+			loc = location.href = "toIndex?category=studentsSchool&search="
+					+ search + "";
 		} else if (document.getElementById("studentsSex").selected == true) {
-			location.href = "toIndex?category=studentsSex&search=" + search
-					+ "";
+			loc = location.href = "toIndex?category=studentsSex&search="
+					+ search + "";
 		} else if (document.getElementById("studentsFx").selected == true) {
-			location.href = "toIndex?category=studentsFx&search=" + search + "";
+			loc = location.href = "toIndex?category=studentsFx&search="
+					+ search + "";
+		}
+		return loc;
+
+	}
+	function nextPage() {
+		var url = selected() + "&currentPage=" + "${pu.page.nextPage}";
+		location.href = url;
+	}
+	function prePage() {
+		var url = selected() + "&currentPage=" + "${pu.page.prePage}";
+		location.href = url;
+	}
+	function endPage() {
+		var url = selected() + "&currentPage=" + "${pu.page.endPage}";
+		location.href = url;
+	}
+	function indexPage() {
+		var url = selected() + "&currentPage=1";
+		location.href = url;
+	}
+	window.onload = function() {
+		var cg = "${category}";
+		if (cg == "studentsName") {
+			document.getElementById("select_id").selectedIndex = 0;
+		} else if (cg == "studentsSex") {
+			document.getElementById("select_id").selectedIndex = 2;
+		} else if (cg == "studentsSchool") {
+			document.getElementById("studentsSchool").selected = true;
+		} else if (cg == "studentsFx") {
+			document.getElementById("select_id").selectedIndex = 3;
 		}
 	}
 </script>
@@ -56,8 +87,6 @@
 		<div class="am-topbar-brand">
 			<strong><a href="toIndex">惠普-洛阳</a></strong> <small>实训后台管理</small>
 		</div>
-
-
 		<button
 			class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
 			data-am-collapse="{target: '#topbar-collapse'}">
@@ -176,32 +205,30 @@
 							<div class="am-btn-group am-btn-group-xs">
 								<button type="button" onclick="location.href='toadd'"
 									class="am-btn am-btn-default">
-									<span class="am-icon-plus"></span> 新增
+									<span class="am-icon-plus"></span> 添加学生
 								</button>
-								<button type="button" onclick="location.href='delAll'"
+								<button type="button" onclick="location.href='toIndex'"
 									class="am-btn am-btn-default">
-									<span class="am-icon-trash-o"></span> 删除
+									<span class="am-icon-archive"></span> 查看全部
 								</button>
 							</div>
 						</div>
 					</div>
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-form-group">
-							<select data-am-selected="{btnSize: 'sm'}" id="select_id">
-								<option id="studentsName" name="studentsName"
-									value="studentsName">姓名</option>
-								<option id="studentsSchool" name="studentsSchool"
-									value="studentsSchool">学校</option>
-								<option id="studentsSex" name="studentsSex" value="studentsSex">性别</option>
-								<option id="studentsFx" name="studentsFx" value="studentsFx">学习方向</option>
+							<select id="select_id">
+								<option id="studentsName" value="studentsName">姓名</option>
+								<option id="studentsSchool" value="studentsSchool">学校</option>
+								<option id="studentsSex" value="studentsSex">性别</option>
+								<option id="studentsFx" value="studentsFx">学习方向</option>
 
 							</select>
 						</div>
 					</div>
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-input-group am-input-group-sm">
-							<input type="text" class="am-form-field" id="search"> <span
-								class="am-input-group-btn">
+							<input type="text" class="am-form-field" id="search"
+								value="${search}"> <span class="am-input-group-btn">
 								<button class="am-btn am-btn-default" type="button"
 									onclick="selected()">搜索</button>
 							</span>
@@ -222,7 +249,7 @@
 										<th class="table-type">性别</th>
 										<th class="table-type">学校</th>
 										<th class="table-author am-hide-sm-only">专业</th>
-										<th class="table-date am-hide-sm-only">方向</th>
+										<th class="table-date am-hide-sm-only">学习方向</th>
 										<th class="table-date am-hide-sm-only">手机号码</th>
 										<th class="table-set">操作</th>
 									</tr>
@@ -271,11 +298,11 @@
 								共 <strong style="color: red">${recordNum}</strong> 名学生
 								<div class="am-fr">
 									<ul class="am-pagination">
-										<li><a href="toIndex?currentPage=1">首页</a></li>
-										<li><a href="toIndex?currentPage=${pu.page.prePage}">前一页</a></li>
-										<li><a href="toIndex?currentPage=${pu.page.currentPage}">第${pu.page.nextPage-1}页</a></li>
-										<li><a href="toIndex?currentPage=${pu.page.nextPage}">后一页</a></li>
-										<li><a href="toIndex?currentPage=${pu.page.endPage}">末页</a></li>
+										<!-- 	<li><a href="toIndex?currentPage=${pu.page.currentPage}">第${pu.page.nextPage-1}页</a></li> -->
+										<li><input type="button" onclick="indexPage()" value="首页"></li>
+										<li><input type="button" onclick="prePage()" value="前一页"></li>
+										<li><input type="button" onclick="nextPage()" value="后一页"></li>
+										<li><input type="button" onclick="endPage()" value="末页"></li>
 									</ul>
 								</div>
 							</div>

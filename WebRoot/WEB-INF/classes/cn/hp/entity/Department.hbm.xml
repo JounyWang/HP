@@ -6,19 +6,19 @@
 -->
 <hibernate-mapping>
     <class name="cn.hp.entity.Department" table="DEPARTMENT" schema="HP">
-        <id name="departmentId" type="java.math.BigDecimal">
-            <column name="DEPARTMENT_ID" precision="22" scale="0" />
+        <id name="departmentId" type="java.lang.Integer">
+            <column name="DEPARTMENT_ID" precision="5" scale="0" />
             <generator class="sequence" />
         </id>
         <many-to-one name="school" class="cn.hp.entity.School" fetch="select">
-            <column name="SCHOOL_ID" precision="22" scale="0" not-null="true" />
+            <column name="SCHOOL_ID" precision="5" scale="0" not-null="true" />
         </many-to-one>
         <property name="departmentName" type="java.lang.String">
             <column name="DEPARTMENT_NAME" length="50" not-null="true" />
         </property>
         <set name="majors" inverse="true">
             <key>
-                <column name="DEPARTMENT_ID" precision="22" scale="0" not-null="true" />
+                <column name="DEPARTMENT_ID" precision="5" scale="0" not-null="true" />
             </key>
             <one-to-many class="cn.hp.entity.Major" />
         </set>

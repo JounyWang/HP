@@ -1,6 +1,5 @@
 package cn.hp.entity;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,16 +39,16 @@ public class School implements java.io.Serializable {
 
 	// Property accessors
 
-	public String getSchoolName() {
-		return this.schoolName;
-	}
-
 	public Integer getSchoolId() {
-		return schoolId;
+		return this.schoolId;
 	}
 
 	public void setSchoolId(Integer schoolId) {
 		this.schoolId = schoolId;
+	}
+
+	public String getSchoolName() {
+		return this.schoolName;
 	}
 
 	public void setSchoolName(String schoolName) {

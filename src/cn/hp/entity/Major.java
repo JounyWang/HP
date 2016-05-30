@@ -1,7 +1,5 @@
 package cn.hp.entity;
 
-import java.math.BigDecimal;
-
 /**
  * Major entity. @author MyEclipse Persistence Tools
  */
@@ -28,20 +26,20 @@ public class Major implements java.io.Serializable {
 
 	// Property accessors
 
+	public Integer getMajorId() {
+		return this.majorId;
+	}
+
+	public void setMajorId(Integer majorId) {
+		this.majorId = majorId;
+	}
+
 	public Department getDepartment() {
 		return this.department;
 	}
 
 	public void setDepartment(Department department) {
 		this.department = department;
-	}
-
-	public Integer getMajorId() {
-		return majorId;
-	}
-
-	public void setMajorId(Integer majorId) {
-		this.majorId = majorId;
 	}
 
 	public String getMajorName() {
