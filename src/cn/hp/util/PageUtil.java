@@ -26,7 +26,6 @@ public class PageUtil {
 				.getTotalCount() / page.getPageSize()
 				: (page.getTotalCount() / page.getPageSize()) + 1);
 
-		System.out.println(page.getTotalPage());
 		//
 		// 判断上一页
 		if (currentPage == 1) {

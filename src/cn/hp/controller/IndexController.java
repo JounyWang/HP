@@ -1,5 +1,6 @@
 package cn.hp.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,16 +37,25 @@ public class IndexController {
 
 	// 显示学生信息
 	@RequestMapping("/toIndex")
-	public String toIndex(HttpServletRequest request, Page page) {
-		HttpSession session = request.getSession();
+	public String toIndex(HttpServletRequest request, Page page,
+			String category, String search) {
+		String s2 = null;
+		try {
+			if (search != null) {
+				s2 = new String(search.getBytes("iso-8859-1"), "utf-8");
+			}
+			request.setCharacterEncoding("UTF-8");
+			HttpSession session = request.getSession();
+			PageUtil pu = new PageUtil();
+			List<Students> listss = studao.list(page, category, s2);
+			int recordNum = studao.getCount();
+			pu.buildPage(page.getCurrentPage(), listss, recordNum);
+			session.setAttribute("recordNum", recordNum);
+			session.setAttribute("pu", pu);
 
-		PageUtil pu = new PageUtil();
-
-		List<Students> listss = studao.list(page);
-		int recordNum = studao.getCount();
-		pu.buildPage(page.getCurrentPage(), listss, recordNum);
-		session.setAttribute("recordNum", recordNum);
-		session.setAttribute("pu", pu);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 
 		return "table";
 
@@ -102,7 +112,7 @@ public class IndexController {
 			return "redirect:toIndex";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "redirect:toadd";
+			return "redirect:toIndex";
 		}
 	}
 

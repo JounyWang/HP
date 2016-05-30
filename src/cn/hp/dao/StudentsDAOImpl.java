@@ -18,7 +18,7 @@ import cn.hp.util.Page;
 @Repository("studentsDAO")
 @SuppressWarnings("all")
 public class StudentsDAOImpl implements StudentsDAO {
-
+	String hql = "";
 	@Resource(name = "hibernateTemplate")
 	HibernateTemplate hibernateTemplate;
 
@@ -48,16 +48,29 @@ public class StudentsDAOImpl implements StudentsDAO {
 	 * 显示全部报名学生
 	 */
 	@Override
-	public List<Students> list(final Page page) {
+	public List<Students> list(final Page page, final String category,
+			final String search) {
 
 		return hibernateTemplate.executeFind(new HibernateCallback() {
-
 			@Override
 			public Object doInHibernate(Session s) throws HibernateException,
 					SQLException {
 				List<Students> list = null;
-				String hql = "from Students";
-				Query q = s.createQuery(hql);
+
+				Query q = null;
+				if (category == null && search == null) {
+					hql = "from Students order by studentsId";
+					q = s.createQuery(hql);
+				} else {
+					// hql =
+					// "from Students where :category like :search order by studentsId";
+					hql = "from Students where 1=1 ";
+					if (!search.equals("") && !category.equals("")) {
+						hql += " and " + category + " like '%" + search + "%'";
+					}
+					q = s.createQuery(hql);
+				}
+
 				// 设置起点
 				q.setFirstResult((page.getCurrentPage() - 1)
 						* page.getPageSize());
@@ -109,8 +122,9 @@ public class StudentsDAOImpl implements StudentsDAO {
 			@Override
 			public Object doInHibernate(Session s) throws HibernateException,
 					SQLException {
-				String hql = "select count(studentsId) from Students";
-				Query q = s.createQuery(hql);
+				String counthql = "select count(studentsId)";
+				counthql += hql;
+				Query q = s.createQuery(counthql);
 				Integer count = Integer.parseInt(q.uniqueResult().toString());
 				return count;
 			}

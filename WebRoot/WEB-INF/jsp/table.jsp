@@ -9,20 +9,31 @@
 <!doctype html>
 <html class="no-js">
 <head>
-<Script type="text/javaScript">
-	function Delete(id) {
-		alert("655555555556");
-		if (confirm("确定要删除吗？")) {
-			location.href = "todelete?studentsid=" + ${Ss};
-			alert("2111111111");
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+	function selected() {
+
+		var search = document.getElementById("search").value;
+		if (document.getElementById("studentsName").selected == true) {
+			location.href = "toIndex?category=studentsName&search=" + search
+					+ "";
+		} else if (document.getElementById("studentsSchool").selected == true) {
+			location.href = "toIndex?category=studentsSchool&search=" + search
+					+ "";
+		} else if (document.getElementById("studentsSex").selected == true) {
+			location.href = "toIndex?category=studentsSex&search=" + search
+					+ "";
+		} else if (document.getElementById("studentsFx").selected == true) {
+			location.href = "toIndex?category=studentsFx&search=" + search + "";
 		}
 	}
-</Script>
+</script>
+
 <base href="<%=basePath%>">
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Amaze UI Admin table Examples</title>
+<title>惠普洛阳人才及产业基地</title>
 <meta name="description" content="这是一个 table 页面">
 <meta name="keywords" content="table">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -176,20 +187,23 @@
 					</div>
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-form-group">
-							<select data-am-selected="{btnSize: 'sm'}">
-								<option value="option1">姓名</option>
-								<option value="option2">学校</option>
-								<option value="option3">性别</option>
-								<option value="option4">学习方向</option>
+							<select data-am-selected="{btnSize: 'sm'}" id="select_id">
+								<option id="studentsName" name="studentsName"
+									value="studentsName">姓名</option>
+								<option id="studentsSchool" name="studentsSchool"
+									value="studentsSchool">学校</option>
+								<option id="studentsSex" name="studentsSex" value="studentsSex">性别</option>
+								<option id="studentsFx" name="studentsFx" value="studentsFx">学习方向</option>
 
 							</select>
 						</div>
 					</div>
 					<div class="am-u-sm-12 am-u-md-3">
 						<div class="am-input-group am-input-group-sm">
-							<input type="text" class="am-form-field"> <span
+							<input type="text" class="am-form-field" id="search"> <span
 								class="am-input-group-btn">
-								<button class="am-btn am-btn-default" type="button">搜索</button>
+								<button class="am-btn am-btn-default" type="button"
+									onclick="selected()">搜索</button>
 							</span>
 						</div>
 					</div>
@@ -254,12 +268,12 @@
 								</tbody>
 							</table>
 							<div class="am-cf">
-								共 <strong style="color: red">${recordNum}</strong> 条学生数据
+								共 <strong style="color: red">${recordNum}</strong> 名学生
 								<div class="am-fr">
 									<ul class="am-pagination">
 										<li><a href="toIndex?currentPage=1">首页</a></li>
 										<li><a href="toIndex?currentPage=${pu.page.prePage}">前一页</a></li>
-										<li><a href="toIndex?currentPage=${pu.page.currentPage}">第${pu.page.currentPage}页</a></li>
+										<li><a href="toIndex?currentPage=${pu.page.currentPage}">第${pu.page.nextPage-1}页</a></li>
 										<li><a href="toIndex?currentPage=${pu.page.nextPage}">后一页</a></li>
 										<li><a href="toIndex?currentPage=${pu.page.endPage}">末页</a></li>
 									</ul>
@@ -300,7 +314,6 @@
 <![endif]-->
 
 	<!--[if (gte IE 9)|!(IE)]><!-->
-	<script src="assets/js/jquery.min.js"></script>
 	<!--<![endif]-->
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>
