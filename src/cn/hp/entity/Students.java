@@ -9,15 +9,13 @@ public class Students implements java.io.Serializable {
 	// Fields
 
 	private Integer studentsId;
+	private Major major;
 	private String studentsName;
 	private String studentsSex;
-	private String studentsSchool;
 	private String studentsMobile;
 	private String studentsEmail;
 	private String studentsFx;
 	private String studentsTeacher;
-	private String studentsDepartment;
-	private String studentsMajor;
 	private Short studentsAge;
 	private String studentsQq;
 	private String studentsHomeaddress;
@@ -43,26 +41,23 @@ public class Students implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Students(String studentsName, String studentsSex,
-			String studentsSchool, String studentsMobile, String studentsEmail,
-			String studentsFx, String studentsTeacher,
-			String studentsDepartment, String studentsMajor, Short studentsAge,
-			String studentsQq, String studentsHomeaddress, String studentsIdno,
+	public Students(Major major, String studentsName, String studentsSex,
+			String studentsMobile, String studentsEmail, String studentsFx,
+			String studentsTeacher, Short studentsAge, String studentsQq,
+			String studentsHomeaddress, String studentsIdno,
 			String studentsIfcadre, String studentsIfadjust,
 			String studentsMajorcourses, String studentsIfjoinactivity,
 			String studentsScholarship, String studentsComputerlanguage,
 			String studentsRelatedqualifications, String studentsPlan,
 			String studentsMethod, String studentsConfidence,
 			String studentsCare, String studentsJob) {
+		this.major = major;
 		this.studentsName = studentsName;
 		this.studentsSex = studentsSex;
-		this.studentsSchool = studentsSchool;
 		this.studentsMobile = studentsMobile;
 		this.studentsEmail = studentsEmail;
 		this.studentsFx = studentsFx;
 		this.studentsTeacher = studentsTeacher;
-		this.studentsDepartment = studentsDepartment;
-		this.studentsMajor = studentsMajor;
 		this.studentsAge = studentsAge;
 		this.studentsQq = studentsQq;
 		this.studentsHomeaddress = studentsHomeaddress;
@@ -82,26 +77,23 @@ public class Students implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Students(String studentsName, String studentsSex,
-			String studentsSchool, String studentsMobile, String studentsEmail,
-			String studentsFx, String studentsTeacher,
-			String studentsDepartment, String studentsMajor, Short studentsAge,
-			String studentsQq, String studentsHomeaddress, String studentsIdno,
+	public Students(Major major, String studentsName, String studentsSex,
+			String studentsMobile, String studentsEmail, String studentsFx,
+			String studentsTeacher, Short studentsAge, String studentsQq,
+			String studentsHomeaddress, String studentsIdno,
 			String studentsIfcadre, String studentsIfadjust,
 			String studentsMajorcourses, String studentsIfjoinactivity,
 			String studentsScholarship, String studentsComputerlanguage,
 			String studentsRelatedqualifications, String studentsPlan,
 			String studentsMethod, String studentsConfidence,
 			String studentsCare, String studentsJob, String studentsPhoto) {
+		this.major = major;
 		this.studentsName = studentsName;
 		this.studentsSex = studentsSex;
-		this.studentsSchool = studentsSchool;
 		this.studentsMobile = studentsMobile;
 		this.studentsEmail = studentsEmail;
 		this.studentsFx = studentsFx;
 		this.studentsTeacher = studentsTeacher;
-		this.studentsDepartment = studentsDepartment;
-		this.studentsMajor = studentsMajor;
 		this.studentsAge = studentsAge;
 		this.studentsQq = studentsQq;
 		this.studentsHomeaddress = studentsHomeaddress;
@@ -131,6 +123,14 @@ public class Students implements java.io.Serializable {
 		this.studentsId = studentsId;
 	}
 
+	public Major getMajor() {
+		return this.major;
+	}
+
+	public void setMajor(Major major) {
+		this.major = major;
+	}
+
 	public String getStudentsName() {
 		return this.studentsName;
 	}
@@ -145,14 +145,6 @@ public class Students implements java.io.Serializable {
 
 	public void setStudentsSex(String studentsSex) {
 		this.studentsSex = studentsSex;
-	}
-
-	public String getStudentsSchool() {
-		return this.studentsSchool;
-	}
-
-	public void setStudentsSchool(String studentsSchool) {
-		this.studentsSchool = studentsSchool;
 	}
 
 	public String getStudentsMobile() {
@@ -185,22 +177,6 @@ public class Students implements java.io.Serializable {
 
 	public void setStudentsTeacher(String studentsTeacher) {
 		this.studentsTeacher = studentsTeacher;
-	}
-
-	public String getStudentsDepartment() {
-		return this.studentsDepartment;
-	}
-
-	public void setStudentsDepartment(String studentsDepartment) {
-		this.studentsDepartment = studentsDepartment;
-	}
-
-	public String getStudentsMajor() {
-		return this.studentsMajor;
-	}
-
-	public void setStudentsMajor(String studentsMajor) {
-		this.studentsMajor = studentsMajor;
 	}
 
 	public Short getStudentsAge() {

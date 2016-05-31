@@ -10,8 +10,13 @@
 				<param name="sequence">seq_id</param>
 			</generator>
 		</id>
-
-		
+		<many-to-one name="major" class="cn.hp.entity.Major" lazy="false"
+			fetch="join">
+			<column name="STUDENTS_MAJORID" precision="5" scale="0"
+				not-null="true">
+				<comment>专业</comment>
+			</column>
+		</many-to-one>
 		<property name="studentsName" type="java.lang.String">
 			<column name="STUDENTS_NAME" length="50" not-null="true">
 				<comment>学生姓名</comment>
@@ -20,11 +25,6 @@
 		<property name="studentsSex" type="java.lang.String">
 			<column name="STUDENTS_SEX" length="4" not-null="true">
 				<comment>性别</comment>
-			</column>
-		</property>
-		<property name="studentsSchool" type="java.lang.String">
-			<column name="STUDENTS_SCHOOL" length="50" not-null="true">
-				<comment>学校</comment>
 			</column>
 		</property>
 		<property name="studentsMobile" type="java.lang.String">
@@ -45,16 +45,6 @@
 		<property name="studentsTeacher" type="java.lang.String">
 			<column name="STUDENTS_TEACHER" length="50" not-null="true">
 				<comment>学习顾问老师</comment>
-			</column>
-		</property>
-		<property name="studentsDepartment" type="java.lang.String">
-			<column name="STUDENTS_DEPARTMENT" length="50" not-null="true">
-				<comment>院系</comment>
-			</column>
-		</property>
-		<property name="studentsMajor" type="java.lang.String">
-			<column name="STUDENTS_MAJOR" length="50" not-null="true">
-				<comment>专业</comment>
 			</column>
 		</property>
 		<property name="studentsAge" type="java.lang.Short">

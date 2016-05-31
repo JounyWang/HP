@@ -61,6 +61,15 @@ public class StudentsDAOImpl implements StudentsDAO {
 				if (category == null && search == null) {
 					hql = "from Students order by studentsId";
 					q = s.createQuery(hql);
+				} else if (category.equals("schoolName") && !search.equals("")) {
+					String sql = "select students_Id,students_name,students_sex,school_name,"
+							+ "major_name,students_fx,students_mobile "
+							+ " from(select *from (select *from students s,major m "
+							+ "where s.STUDENTS_MAJORID=m.major_id)m,department d "
+							+ "where m.department_id=d.department_id) d,school s "
+							+ "where d.school_id=s.school_id";
+					sql += " and school_name" + " like '%" + search + "%'";
+					q = s.createSQLQuery(sql);
 				} else {
 					// hql =
 					// "from Students where :category like :search order by studentsId";
@@ -70,7 +79,6 @@ public class StudentsDAOImpl implements StudentsDAO {
 					}
 					q = s.createQuery(hql);
 				}
-
 				// 设置起点
 				q.setFirstResult((page.getCurrentPage() - 1)
 						* page.getPageSize());

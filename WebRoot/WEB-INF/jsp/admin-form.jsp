@@ -109,20 +109,32 @@
 								<br> <br /> <label for="studentsSchool"
 									class="am-u-sm-4 am-u-md-2 am-text-right">学校:</label>
 								<div class="am-u-sm-8 am-u-md-4">
-									<input type="text" name="studentsSchool" id="studentsSchool"
-										value="">
+									<select name="studentsSchool" id="schoolId"
+										onchange="loadYx(this)">
+										<option>---请选择学校---</option>
+
+									</select>
 								</div>
 								<br /> <br /> <label for="studentsDepartment"
 									class="am-u-sm-4 am-u-md-2 am-text-right">院系:</label>
 								<div class="am-u-sm-8 am-u-md-4">
-									<input type="text" name="studentsDepartment"
-										id="studentsDepartment" value="">
+
+									<select name="studentsDepartment" id="studentsDepartment"
+										onchange="loadZz(this)">
+										<option>---请选择院系---</option>
+									</select>
+									<!--<input type="text" name="studentsDepartment"
+				id="studentsDepartment" value="" placeholder="请输入院系"> -->
 								</div>
 								<br /> <br /> <label for="studentsMajor"
 									class="am-u-sm-4 am-u-md-2 am-text-right">专业:</label>
 								<div class="am-u-sm-8 am-u-md-4">
-									<input type="text" name="studentsMajor" id="studentsMajor"
-										value="">
+
+									<select name="studentsMajor" id="studentsMajor">
+										<option value="0">---请选择专业---</option>
+									</select>
+									<!-- <input type="text" name="studentsMajor" id="studentsMajor"
+					value="" placeholder="请输入专业"> -->
 								</div>
 								<br> <br /> <label for="studentsQq"
 									class="am-u-sm-4 am-u-md-2 am-text-right">常用QQ:</label>
@@ -166,11 +178,11 @@
 								<label for="studentsFx"
 									class="am-u-sm-4 am-u-md-2 am-text-right">HP专业方向:</label>&nbsp;
 								&nbsp; <input type="radio" name="studentsFx" id="studentsFx"
-									value="软件测试工程师" checked="checked" />软件测试&nbsp; &nbsp; <input
-									type="radio" name="studentsFx" id="studentsFx"
-									value=".NET开发工程师" />.NET开发&nbsp; &nbsp; <input type="radio"
-									name="studentsFx" id="studentsFx" value="软件开发工程师" />java开发&nbsp;
-								&nbsp; <br /> <br /> <label for="studentsIfadjust"
+									value="软件测试" checked="checked" />软件测试&nbsp; &nbsp; <input
+									type="radio" name="studentsFx" id="studentsFx" value=".NET开发" />.NET开发&nbsp;
+								&nbsp; <input type="radio" name="studentsFx" id="studentsFx"
+									value="java开发" />java开发&nbsp; &nbsp; <br /> <br /> <label
+									for="studentsIfadjust"
 									class="am-u-sm-4 am-u-md-2 am-text-right">是否接受调剂:</label>&nbsp;
 								&nbsp; <input type="radio" name="studentsIfadjust"
 									id="studentsIfadjust" checked="checked" value="是" />是&nbsp;
@@ -303,5 +315,63 @@
 	<!--<![endif]-->
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				url : "toSchool",
+				type : "post",
+				dataType : "json",
+				success : rtnSchool
+			});
+		});
+		function rtnSchool(data) {
+			/*$("#nametips").html(data);*/
+			var op1 = "<option value='0'>---请选择学校---</option>";
+			for (var i = 0; i < data.length; i++) {
+				//alert(data[i].sid+"---"+data[i].sname);
+				op1 += "<option value='"+data[i].sid+"'>";
+				op1 += data[i].sname;
+				op1 += "</option>";
+			}
+			$("#schoolId").html(op1);
+		}
+
+		function loadYx(obj) {
+			$.ajax({
+				url : "toDept?schoolId=" + obj.value,
+				type : "post",
+				dataType : "json",
+				success : function(data) {
+					var op2 = "<option value='0'>---请选择院系---</option>";
+					for (var i = 0; i < data.length; i++) {
+						//alert(data[i].sid+"---"+data[i].sname);
+						op2 += "<option value='"+data[i].did+"'>";
+						op2 += data[i].dname;
+						op2 += "</option>";
+					}
+					$("#studentsDepartment").html(op2);
+
+				}
+			});
+		}
+		function loadZz(obj) {
+			$.ajax({
+				url : "toMajor?departmentId=" + obj.value,
+				type : "post",
+				dataType : "json",
+				success : function(data) {
+					var op3 = "<option value='0'>---请选择专业---</option>";
+					for (var i = 0; i < data.length; i++) {
+						//alert(data[i].sid+"---"+data[i].sname);
+						op3 += "<option value='"+data[i].mid+"'>";
+						op3 += data[i].mname;
+						op3 += "</option>";
+					}
+					$("#studentsMajor").html(op3);
+
+				}
+			});
+		}
+	</script>
 </body>
 </html>

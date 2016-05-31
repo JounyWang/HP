@@ -262,8 +262,8 @@
 											<td>${Ss.studentsId}</td>
 											<td class="am-hide-sm-only">${Ss.studentsName}</td>
 											<td class="am-hide-sm-only">${Ss.studentsSex}</td>
-											<td class="am-hide-sm-only">${Ss.studentsSchool}</td>
-											<td class="am-hide-sm-only">${Ss.studentsMajor}</td>
+											<td class="am-hide-sm-only">${Ss.getMajor().getDepartment().getSchool().getSchoolName()}</td>
+											<td class="am-hide-sm-only">${Ss.getMajor().getMajorName()}</td>
 											<td class="am-hide-sm-only">${Ss.studentsFx}</td>
 											<td class="am-hide-sm-only">${Ss.studentsMobile}</td>
 											<td>

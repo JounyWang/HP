@@ -12,5 +12,5 @@ public interface DepartmentDAO
 	 * @return
 	 * @throws Exception
 	 */
-	public List<School> serach(School school) throws Exception;
+	public List<Department> serach(School school) throws Exception;
 }

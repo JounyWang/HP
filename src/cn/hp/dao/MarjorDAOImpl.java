@@ -1,7 +1,6 @@
 package cn.hp.dao;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,12 +13,11 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import cn.hp.entity.Department;
-import cn.hp.entity.School;
-import cn.hp.entity.Students;
+import cn.hp.entity.Major;
 
-@Repository("departmentDAO")
+@Repository("maJorDAO")
 @SuppressWarnings("all")
-public class DepartmentDAOImpl implements DepartmentDAO {
+public class MarjorDAOImpl implements MarjorDAO {
 
 	@Resource(name = "hibernateTemplate")
 	HibernateTemplate hibernateTemplate;
@@ -33,23 +31,21 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	}
 
 	@Override
-	public List<Department> serach(final School school) throws Exception {
-
+	public List<Major> getMarjorList(final Department de) {
 		return hibernateTemplate.executeFind(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
 
-				List<Department> list = null;
-				String hql = "from Department where school.schoolId=?";
+				List<Major> list = null;
+				String hql = "from Major where department.departmentId=? ";
 				Query q = null;
 				q = session.createQuery(hql);
-				q.setParameter(0, school.getSchoolId());
+				q.setParameter(0, de.getDepartmentId());
 				list = q.list();
 				return list;
 			}
 
 		});
 	}
-
 }

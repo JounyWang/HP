@@ -6,31 +6,22 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cn.hp.dao.DepartmentDAO;
+import cn.hp.dao.MarjorDAO;
 import cn.hp.entity.Department;
-import cn.hp.entity.School;
+import cn.hp.entity.Major;
 
 @Controller
-public class DepartmentController {
-	@Resource(name = "departmentDAO")
-	DepartmentDAO depdao;
+public class MajorController {
+	@Resource(name = "maJorDAO")
+	MarjorDAO mdao;
 
-	public DepartmentDAO getDepdao() {
-		return depdao;
-	}
-
-	public void setDepdao(DepartmentDAO depdao) {
-		this.depdao = depdao;
-	}
-
-	@RequestMapping("/toDept")
+	@RequestMapping("/toMajor")
 	public void toDept(HttpServletRequest request,
-			HttpServletResponse response, School sch) {
+			HttpServletResponse response, Department de) {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = null;
 		StringBuffer subffer = new StringBuffer();
@@ -38,13 +29,13 @@ public class DepartmentController {
 		try {
 			out = response.getWriter();
 
-			List<Department> listde = depdao.serach(sch);
+			List<Major> listmj = mdao.getMarjorList(de);
 
 			subffer.append("[");
-			for (Department de : listde) {
+			for (Major mj : listmj) {
 				subffer.append("{");
-				subffer.append("\"did\":\"" + de.getDepartmentId() + "\",");
-				subffer.append("\"dname\":\"" + de.getDepartmentName() + "\"");
+				subffer.append("\"mid\":\"" + mj.getMajorId() + "\",");
+				subffer.append("\"mname\":\"" + mj.getMajorName() + "\"");
 				subffer.append("},");
 			}
 			rtnMsg = subffer.substring(0, subffer.length() - 1) + "]";
