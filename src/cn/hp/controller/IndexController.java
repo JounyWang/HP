@@ -40,19 +40,19 @@ public class IndexController {
 	public String toIndex(HttpServletRequest request, Page page,
 			String category, String search) {
 
-		String s2 = null;
+		String search2 = null;
 		try {
 			if (search != null) {
-				s2 = new String(search.getBytes("iso-8859-1"), "utf-8");
+				search2 = new String(search.getBytes("iso-8859-1"), "utf-8");
 			}
 			request.setCharacterEncoding("UTF-8");
 			PageUtil pu = new PageUtil();
-			List<Students> listss = studao.list(page, category, s2);
-			int recordNum = studao.getCount();
+			List<Students> listss = studao.list(page, category, search2);
+			int recordNum = studao.getCount(category, search2);
 			pu.buildPage(page.getCurrentPage(), listss, recordNum);
 			HttpSession session = request.getSession();
 			session.setAttribute("category", category);
-			session.setAttribute("search", s2);
+			session.setAttribute("search", search2);
 			session.setAttribute("recordNum", recordNum);
 			session.setAttribute("pu", pu);
 

@@ -12,7 +12,7 @@
 <base href="<%=basePath%>">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Amaze UI Admin user Examples</title>
+<title>惠普洛阳人才及产业基地</title>
 <meta name="description" content="这是一个 user 页面">
 <meta name="keywords" content="user">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -203,24 +203,40 @@
 												<input type="text" name="studentsMobile" id="studentsMobile"
 													value="${listfd.studentsMobile}">
 											</div>
-											<br> <br /> <label for="studentsSchool"
+											<br> <br /> <label for="schoolName"
 												class="am-u-sm-4 am-u-md-2 am-text-right">学校:</label>
 											<div class="am-u-sm-8 am-u-md-4">
-												<input type="text" name="studentsSchool" id="studentsSchool"
-													value="${listfd.studentsSchool}">
+												<select name="studentsSchool" id="schoolId"
+													onchange="loadYx(this)">
+													<option
+														value="${listfd.getMajor().getDepartment().getSchool().schoolName}"
+														selected="selected">${listfd.getMajor().getDepartment().getSchool().schoolName}</option>
+												</select>
+												<!-- <input type="text" name="schoolName" id="schoolName"
+													value="${listfd.getMajor().getDepartment().getSchool().schoolName}"> -->
 											</div>
 											<br /> <br /> <label for="studentsDepartment"
 												class="am-u-sm-4 am-u-md-2 am-text-right">院系:</label>
 											<div class="am-u-sm-8 am-u-md-4">
-												<input type="text" name="studentsDepartment"
+												<select name="studentsDepartment" id="studentsDepartment"
+													onchange="loadZz(this)">
+													<option
+														value="${listfd.getMajor().getDepartment().departmentName}"
+														selected="selected">${listfd.getMajor().getDepartment().departmentName}</option>
+												</select>
+												<!-- <input type="text" name="studentsDepartment"
 													id="studentsDepartment"
-													value="${listfd.studentsDepartment}">
+													value="${listfd.getMajor().getDepartment().departmentName}"> -->
 											</div>
 											<br /> <br /> <label for="studentsMajor"
 												class="am-u-sm-4 am-u-md-2 am-text-right">专业:</label>
 											<div class="am-u-sm-8 am-u-md-4">
-												<input type="text" name="studentsMajor" id="studentsMajor"
-													value="${listfd.studentsMajor}">
+												<select name="major.majorId" id="studentsMajor">
+													<option value="${listfd.getMajor().majorId}"
+														selected="selected">${listfd.getMajor().majorName}</option>
+												</select>
+												<!-- <input type="text" name="studentsMajor" id="studentsMajor"
+													value="${listfd.getMajor().majorName}"> -->
 											</div>
 											<br> <br /> <label for="studentsQq"
 												class="am-u-sm-4 am-u-md-2 am-text-right">常用QQ:</label>
@@ -273,10 +289,10 @@
 												<c:if test="${listfd.studentsFx=='软件测试'}">checked="checked"</c:if> />软件测试&nbsp;
 											&nbsp; <input type="radio" name="studentsFx" id="studentsFx"
 												<c:if test="${listfd.studentsFx=='.NET开发'}">checked="checked"</c:if>
-												value=".NET开发工程师" />.NET开发&nbsp; &nbsp; <input type="radio"
+												value=".NET开发" />.NET开发&nbsp; &nbsp; <input type="radio"
 												name="studentsFx" id="studentsFx"
 												<c:if test="${listfd.studentsFx=='java开发'}">checked="checked"</c:if>
-												value="软件开发工程师" />java开发&nbsp; &nbsp; <br /> <br /> <label
+												value="java开发" />java开发&nbsp; &nbsp; <br /> <br /> <label
 												for="studentsIfadjust"
 												class="am-u-sm-4 am-u-md-2 am-text-right">是否接受调剂:</label>&nbsp;
 											&nbsp; <input type="radio" name="studentsIfadjust"
@@ -385,8 +401,8 @@
 												<c:if test="${listfd.studentsCare=='师资'}">checked="checked"</c:if>
 												name="studentsCare" id="studentsCare" value="师资" />师资&nbsp;
 											&nbsp; <input type="radio" name="studentsCare"
-												<c:if test="${listfd.studentsCare=='实习创业就业'}">checked="checked"</c:if>
-												id="studentsCare" value="实习创业就业" />实习创业就业&nbsp; &nbsp; <input
+												<c:if test="${listfd.studentsCare=='实习'}">checked="checked"</c:if>
+												id="studentsCare" value="实习创业就业" />实习&nbsp; &nbsp; <input
 												type="radio" name="studentsCare" id="studentsCare"
 												<c:if test="${listfd.studentsCare=='其他'}">checked="checked"</c:if>
 												value="其他" />其他&nbsp; &nbsp; <br /> <br /> <label
@@ -462,5 +478,77 @@
 	<script src="assets/js/amazeui.min.js"></script>
 
 	<script src="assets/js/app.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				url : "toSchool",
+				type : "post",
+				dataType : "json",
+				success : rtnSchool
+			});
+		});
+		function rtnSchool(data) {
+			var op1 = "<option value='0'>---请选择学校---</option>";
+			for (var i = 0; i < data.length; i++) {
+				//alert(data[i].sid+"---"+data[i].sname);
+				if ("${listfd.getMajor().getDepartment().getSchool().schoolName}" == data[i].sname) {
+					op1 += "<option value='"+data[i].sid+"' selected>";
+				} else {
+					op1 += "<option value='"+data[i].sid+"'>";
+				}
+				op1 += data[i].sname;
+				op1 += "</option>";
+			}
+			$("#schoolId").html(op1);
+		}
+
+		function loadYx(obj) {
+			$
+					.ajax({
+						url : "toDept?schoolId=" + obj.value,
+						type : "post",
+						dataType : "json",
+						success : function(data) {
+							var op2 = "<option value='0'>---请选择院系---</option>";
+							for (var i = 0; i < data.length; i++) {
+								//alert(data[i].did+"---"+data[i].dname);
+								if ("${listfd.getMajor().getDepartment().departmentName}" == data[i].dname) {
+									op2 += "<option value='"+data[i].did+"' selected>";
+								} else {
+									op2 += "<option value='"+data[i].did+"'>";
+								}
+								op2 += data[i].dname;
+								op2 += "</option>";
+							}
+							$("#studentsDepartment").html(op2);
+						}
+					});
+		}
+		function loadZz(obj) {
+			$.ajax({
+				url : "toMajor?departmentId=" + obj.value,
+				type : "post",
+				dataType : "json",
+				success : function(data) {
+					var op3 = "<option value='0'>---请选择专业---</option>";
+					for (var i = 0; i < data.length; i++) {
+						//alert(data[i].sid+"---"+data[i].sname);
+						//if ("${listfd.getMajor().majorName}" == data[i].mname) {
+						op3 += "<option value='"+data[i].mid+"'>";
+						//} else {
+						op3 += data[i].mname;
+						op3 += "</option>";
+						//}
+					}
+					$("#studentsMajor").html(op3);
+
+				}
+			});
+		}
+
+		//	$(function() {
+		//		alert("${listfd.getMajor().getDepartment().departmentName}");
+		//	})
+	</script>
 </body>
 </html>

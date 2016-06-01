@@ -35,7 +35,9 @@ public class StudentsController {
 	public String doadd(Students stu, HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
-
+		// System.out.println(stu.getMajor().getMajorId());
+		System.out.println(request.getParameter("********************"
+				+ "studentsMajor"));
 		try {
 			studao.addStudent(stu);
 			return "redirect:toIndex";
@@ -46,5 +48,4 @@ public class StudentsController {
 		}
 
 	}
-
 }

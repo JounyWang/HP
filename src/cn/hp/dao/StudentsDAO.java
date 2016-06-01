@@ -22,10 +22,10 @@ public interface StudentsDAO {
 
 	public void update(Students stu) throws Exception;
 
-	public int getCount();
+	public int getCount(String category, String search);
 
 	/**
 	 * 显示全部学生
 	 */
-	public List<Students> list(final Page page,String category,String search);
+	public List<Students> list(final Page page, String category, String search);
 }

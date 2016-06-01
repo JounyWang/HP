@@ -12,6 +12,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import cn.hp.entity.School;
 import cn.hp.entity.Students;
 import cn.hp.util.Page;
 
@@ -62,14 +63,19 @@ public class StudentsDAOImpl implements StudentsDAO {
 					hql = "from Students order by studentsId";
 					q = s.createQuery(hql);
 				} else if (category.equals("schoolName") && !search.equals("")) {
-					String sql = "select students_Id,students_name,students_sex,school_name,"
-							+ "major_name,students_fx,students_mobile "
-							+ " from(select *from (select *from students s,major m "
-							+ "where s.STUDENTS_MAJORID=m.major_id)m,department d "
-							+ "where m.department_id=d.department_id) d,school s "
-							+ "where d.school_id=s.school_id";
-					sql += " and school_name" + " like '%" + search + "%'";
-					q = s.createSQLQuery(sql);
+					String hql = "from Students a inner join fetch a.major b inner join fetch "
+							+ "b.department c inner join fetch c.school d ";
+					// String sql =
+					// "select students_Id,students_name,students_sex,school_name,"
+					// + "major_name,students_fx,students_mobile "
+					// + " from(select *from (select *from students s,major m "
+					// + "where s.STUDENTS_MAJORID=m.major_id)m,department d "
+					// + "where m.department_id=d.department_id) d,school s "
+					// + "where d.school_id=s.school_id";
+					hql += " where d.schoolName like '%" + search + "%' ";
+					// q =
+					// s.createSQLQuery(sql).addEntity(Students.class).addEntity(School.class);
+					q = s.createQuery(hql);
 				} else {
 					// hql =
 					// "from Students where :category like :search order by studentsId";
@@ -125,13 +131,20 @@ public class StudentsDAOImpl implements StudentsDAO {
 
 	// 查询总条数
 	@Override
-	public int getCount() {
+	public int getCount(final String category, final String search) {
 		return hibernateTemplate.execute(new HibernateCallback() {
 			@Override
 			public Object doInHibernate(Session s) throws HibernateException,
 					SQLException {
-				String counthql = "select count(studentsId)";
-				counthql += hql;
+				String counthql = "";
+				if ((category != null) && category.equals("schoolName")) {
+					counthql = "select count(a.studentsId)  from Students a inner join   a.major b inner join   "
+							+ "b.department c inner join   c.school d ";
+
+					counthql += " where d.schoolName like '%" + search + "%' ";
+				} else {
+					counthql = "select count(studentsId)  " + hql;
+				}
 				Query q = s.createQuery(counthql);
 				Integer count = Integer.parseInt(q.uniqueResult().toString());
 				return count;

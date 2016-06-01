@@ -7,7 +7,6 @@ package cn.hp.entity;
 public class Students implements java.io.Serializable {
 
 	// Fields
-
 	private Integer studentsId;
 	private Major major;
 	private String studentsName;

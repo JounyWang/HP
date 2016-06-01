@@ -11,14 +11,22 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
+	function checkDelete() {
+		var msg = "确定要删除吗？";
+		if (confirm(msg) == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	function selected() {
 		var loc = null;
 		var search = document.getElementById("search").value;
 		if (document.getElementById("studentsName").selected == true) {
 			loc = location.href = "toIndex?category=studentsName&search="
 					+ search + "";
-		} else if (document.getElementById("studentsSchool").selected == true) {
-			loc = location.href = "toIndex?category=studentsSchool&search="
+		} else if (document.getElementById("schoolName").selected == true) {
+			loc = location.href = "toIndex?category=schoolName&search="
 					+ search + "";
 		} else if (document.getElementById("studentsSex").selected == true) {
 			loc = location.href = "toIndex?category=studentsSex&search="
@@ -52,8 +60,8 @@
 			document.getElementById("select_id").selectedIndex = 0;
 		} else if (cg == "studentsSex") {
 			document.getElementById("select_id").selectedIndex = 2;
-		} else if (cg == "studentsSchool") {
-			document.getElementById("studentsSchool").selected = true;
+		} else if (cg == "schoolName") {
+			document.getElementById("schoolName").selected = true;
 		} else if (cg == "studentsFx") {
 			document.getElementById("select_id").selectedIndex = 3;
 		}
@@ -124,7 +132,7 @@
 		<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
 			<div class="am-offcanvas-bar admin-offcanvas-bar">
 				<ul class="am-list admin-sidebar-list">
-					<li><a href="href="toIndex""><span class="am-icon-home"></span>
+					<li><a href="toIndex"><span class="am-icon-home"></span>
 							首页</a></li>
 					<li class="admin-parent"><a class="am-cf"
 						data-am-collapse="{target: '#collapse-nav'}"><span
@@ -204,11 +212,13 @@
 						<div class="am-btn-toolbar">
 							<div class="am-btn-group am-btn-group-xs">
 								<button type="button" onclick="location.href='toadd'"
-									class="am-btn am-btn-default">
+									style="background-color: white"
+									class="am-btn am-btn-default am-btn-xs am-text-secondary">
 									<span class="am-icon-plus"></span> 添加学生
 								</button>
 								<button type="button" onclick="location.href='toIndex'"
-									class="am-btn am-btn-default">
+									style="background-color: white"
+									class="am-btn am-btn-default am-btn-xs am-text-secondary">
 									<span class="am-icon-archive"></span> 查看全部
 								</button>
 							</div>
@@ -218,10 +228,9 @@
 						<div class="am-form-group">
 							<select id="select_id">
 								<option id="studentsName" value="studentsName">姓名</option>
-								<option id="studentsSchool" value="studentsSchool">学校</option>
+								<option id="schoolName" value="schoolName">学校</option>
 								<option id="studentsSex" value="studentsSex">性别</option>
 								<option id="studentsFx" value="studentsFx">学习方向</option>
-
 							</select>
 						</div>
 					</div>
@@ -243,7 +252,7 @@
 								class="am-table am-table-striped am-table-hover table-main">
 								<thead>
 									<tr>
-										<th class="table-check"><input type="checkbox" /></th>
+										<!--  	<th class="table-check"><input type="checkbox" /></th>-->
 										<th class="table-id">ID</th>
 										<th class="table-title">姓名</th>
 										<th class="table-type">性别</th>
@@ -254,11 +263,12 @@
 										<th class="table-set">操作</th>
 									</tr>
 								</thead>
+
 								<tbody>
+
 									<c:forEach var="Ss" items="${pu.list}" varStatus="i">
 										<tr>
 											<!-- <c:if test="checkbox='true'">name="id"></c:if>> -->
-											<td><input type="checkbox" value="${Ss.studentsId}" /></td>
 											<td>${Ss.studentsId}</td>
 											<td class="am-hide-sm-only">${Ss.studentsName}</td>
 											<td class="am-hide-sm-only">${Ss.studentsSex}</td>
@@ -269,17 +279,16 @@
 											<td>
 												<div class="am-btn-toolbar">
 													<div class="am-btn-group am-btn-group-xs">
-														<button type="button"
+														<a style="background-color: white"
 															class="am-btn am-btn-default am-btn-xs am-text-secondary"
 															onclick="location.href='find?studentsId=${Ss.studentsId}'">
 															<span class="am-icon-pencil-square-o"></span>修改&nbsp;/&nbsp;查看
-														</button>
-
-														<button type="button"
-															class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"
-															onclick="location.href='todelete?studentsId=${Ss.studentsId}'">
-															<span class="am-icon-trash-o"></span> 删除
-														</button>
+														</a> <a style="background-color: white"
+															class="am-btn am-btn-default am-btn-xs am-text-secondary"
+															href="todelete?studentsId=${Ss.studentsId}"
+															onclick="javascript:return checkDelete()"> <span
+															class="am-icon-trash-o"></span> 删除
+														</a>
 													</div>
 												</div>
 											</td>
@@ -299,10 +308,19 @@
 								<div class="am-fr">
 									<ul class="am-pagination">
 										<!-- 	<li><a href="toIndex?currentPage=${pu.page.currentPage}">第${pu.page.nextPage-1}页</a></li> -->
-										<li><input type="button" onclick="indexPage()" value="首页"></li>
-										<li><input type="button" onclick="prePage()" value="前一页"></li>
-										<li><input type="button" onclick="nextPage()" value="后一页"></li>
-										<li><input type="button" onclick="endPage()" value="末页"></li>
+										<li><input style="background-color: white"
+											class="am-btn am-btn-default am-btn-xs am-text-secondary"
+											type="button" onclick="indexPage()" value="首页"></li>
+										<li><input style="background-color: white"
+											class="am-btn am-btn-default am-btn-xs am-text-secondary"
+											type="button" onclick="prePage()" value="上页"></li>
+										<li><input style="background-color: white"
+											class="am-btn am-btn-default am-btn-xs am-text-secondary"
+											type="button" onclick="nextPage()" value="下页"></li>
+										<li><input style="background-color: white"
+											class="am-btn am-btn-default am-btn-xs am-text-secondary"
+											type="button" onclick="endPage()" value="末页"></li>
+
 									</ul>
 								</div>
 							</div>

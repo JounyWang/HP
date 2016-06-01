@@ -12,7 +12,7 @@
 <base href="<%=basePath%>">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>惠普-洛阳人才及产业基地欢迎您</title>
+<title>惠普洛阳人才及产业基地</title>
 <meta name="description" content="这是一个form页面">
 <meta name="keywords" content="form">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,7 +54,8 @@
 		<!-- content start -->
 
 		<div class="admin-content">
-			<form method="post" class="am-form" action="doadd">
+			<form method="post" class="am-form" action="doadd"
+				onsubmit="return checkAll()">
 				<div class="admin-content-body">
 					<div class="am-cf am-padding am-padding-bottom-0">
 						<div class="am-fl am-cf">
@@ -79,23 +80,23 @@
 									class="am-u-sm-4 am-u-md-2 am-text-right">姓名:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsName" id="studentsName"
-										value="">
+										value="" onblur="checkstudentsName()">
 								</div>
-
+								<span id=msgName style="font-size:13px; color:#0e90d2;"></span><br />
 								<div class="am-g am-margin-top">
-									<label for="studentsPhoto"
+									<!-- <label for="studentsPhoto"
 										class="am-u-sm-4 am-u-md-2 am-text-right">照片:</label>
-									<div class="am-u-sm-8 am-u-md-4">
-										<input type="file" name="studentsPhoto" id="studentsPhoto"
-											value="">
-									</div>
+										<input class="am-u-sm-8" type="file" name="studentsPhoto" id="studentsPhoto"
+											value=""> -->
 								</div>
 								<label for="studentsAge"
 									class="am-u-sm-4 am-u-md-2 am-text-right">年龄:</label>
 								<div class="am-u-sm-8 am-u-md-4">
-									<input type="text" name="studentsAge" id="studentsAge" value="">
+									<input type="text" name="studentsAge" id="studentsAge" value=""
+										onblur="checkAge()">
 								</div>
-								<br /> <br /> <label for="studentsSex"
+								<span id=msgAge style="font-size:13px; color:#0e90d2;"></span> <br />
+								<br /> <label for="studentsSex"
 									class="am-u-sm-4 am-u-md-2 am-text-right">性别:</label>&nbsp;
 								&nbsp; <input type="radio" name="studentsSex" id="studentsSex"
 									checked="checked" value="男" />男&nbsp; &nbsp; <input
@@ -104,15 +105,14 @@
 									class="am-u-sm-4 am-u-md-2 am-text-right">手机号码:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsMobile" id="studentsMobile"
-										value="">
+										value="" onblur="checkstudentsMobile()">
 								</div>
+								<span id=msgPhone style="font-size:13px; color:#0e90d2;"></span>
 								<br> <br /> <label for="studentsSchool"
 									class="am-u-sm-4 am-u-md-2 am-text-right">学校:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<select name="studentsSchool" id="schoolId"
 										onchange="loadYx(this)">
-										<option>---请选择学校---</option>
-
 									</select>
 								</div>
 								<br /> <br /> <label for="studentsDepartment"
@@ -121,7 +121,6 @@
 
 									<select name="studentsDepartment" id="studentsDepartment"
 										onchange="loadZz(this)">
-										<option>---请选择院系---</option>
 									</select>
 									<!--<input type="text" name="studentsDepartment"
 				id="studentsDepartment" value="" placeholder="请输入院系"> -->
@@ -130,8 +129,7 @@
 									class="am-u-sm-4 am-u-md-2 am-text-right">专业:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 
-									<select name="studentsMajor" id="studentsMajor">
-										<option value="0">---请选择专业---</option>
+									<select name="major.majorId" id="studentsMajor">
 									</select>
 									<!-- <input type="text" name="studentsMajor" id="studentsMajor"
 					value="" placeholder="请输入专业"> -->
@@ -139,26 +137,31 @@
 								<br> <br /> <label for="studentsQq"
 									class="am-u-sm-4 am-u-md-2 am-text-right">常用QQ:</label>
 								<div class="am-u-sm-8 am-u-md-4">
-									<input type="text" name="studentsQq" id="studentsQq" value="">
+									<input type="text" name="studentsQq" id="studentsQq" value=""
+										onblur="checkstudentsQq()">
 								</div>
-								<br> <br /> <label for="studentsTeacher"
+								<span id=msgQq style="font-size:13px; color:#0e90d2;"></span> <br>
+								<br /> <label for="studentsTeacher"
 									class="am-u-sm-4 am-u-md-2 am-text-right">惠普指导老师:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsTeacher" id="studentsTeacher"
-										value="">
+										value="" onblur="checkstudentsTeacher()">
 								</div>
+								<span id=msgTeacher style="font-size:13px; color:#0e90d2;"></span>
 								<br> <br /> <label for="studentsIdno"
 									class="am-u-sm-4 am-u-md-2 am-text-right">身份证号码:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsIdno" id="studentsIdno"
-										value="">
+										value="" onblur="checkstudentsIdno()">
 								</div>
+								<span id=msgIdno style="font-size:13px; color:#0e90d2;"></span>
 								<br> <br /> <label for="studentsEmail"
 									class="am-u-sm-4 am-u-md-2 am-text-right">电子邮箱:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="email" name="studentsEmail" id="studentsEmail"
-										value="">
+										value="" onblur="checkstudentsEmail()">
 								</div>
+								<span id=msgEmail style="font-size:13px; color:#0e90d2;"></span>
 								<br /> <br /> <label for="studentsIfcadre"
 									class="am-u-sm-4 am-u-md-2 am-text-right">是否学生干部:</label>&nbsp;
 								&nbsp; <input type="radio" name="studentsIfcadre"
@@ -169,7 +172,19 @@
 									class="am-u-sm-4 am-u-md-2 am-text-right">家庭住址:</label>
 								<div class="am-u-sm-2 am-u-md-4" style="float:left">
 									<input type="text" name="studentsHomeaddress"
-										id="studentsHomeaddress" value="">
+										id="studentsHomeaddress" value=""
+										onblur="checkstudentsHomeaddress()">
+								</div>
+								<span id=msgHomeaddress style="font-size:13px; color:#0e90d2;"></span>
+								<br /> <br /> <label for="Code"
+									class="am-u-sm-4 am-u-md-2 am-text-right">验证码：</label>
+								<div class="am-u-sm-2 am-u-md-4" style="float:left">
+									<input class="text" type="text" name="veryCode" id="veryCode"
+										onfocus="FocusItem()" placeholder="请输入验证码"
+										onblur="CheckItem();" /><span id=msgCode
+										style="font-size:13px; color:#0e90d2; float:left;"></span> <img
+										id="veryCode1" src="SafeCode" align="center" />&nbsp;&nbsp;&nbsp;&nbsp;<label
+										style="color:red"><a href="javascript:changeCode()">看不清</a></label>
 								</div>
 							</div>
 
@@ -192,15 +207,20 @@
 									class="am-u-sm-4 am-u-md-2 am-text-right">主要专业课程:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsMajorcourses"
-										id="studentsMajorcourses" value="" placeholder="1-3门">
+										id="studentsMajorcourses" value="" placeholder="1-3门"
+										onblur="checkstudentsMajorcourses()">
 								</div>
+								<span id=msgMajorcourses style="font-size:13px; color:#0e90d2;"></span>
 								<br /> <br /> <label for="studentsIfjoinactivity"
 									class="am-u-sm-4 am-u-md-2 am-text-right">参加的计算机类活动:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsIfjoinactivity"
-										id="studentsIfjoinactivity" placeholder="项目/比赛" />
+										id="studentsIfjoinactivity" placeholder="项目/比赛"
+										onblur="checkstudentsIfjoinactivity()" />
 								</div>
-								<br /> <br /> <br /> <label for="studentsScholarship"
+								<span id=msgIfjoinactivity
+									style="font-size:13px; color:#0e90d2;"></span> <br /> <br />
+								<br /> <label for="studentsScholarship"
 									class="am-u-sm-4 am-u-md-2 am-text-right">是否得过奖学金:</label>&nbsp;
 								&nbsp; <input type="radio" name="studentsScholarship"
 									id="studentsScholarship" checked="checked" value="是" />是&nbsp;
@@ -210,14 +230,20 @@
 									class="am-u-sm-4 am-u-md-2 am-text-right">计算机相关资质:</label>
 								<div class="am-u-sm-8 am-u-md-4">
 									<input type="text" name="studentsRelatedqualifications"
-										id="studentsRelatedqualifications" placeholder="无/相关证书" />
+										id="studentsRelatedqualifications" placeholder="无/相关证书"
+										onblur="checkstudentsRelatedqualifications()" />
 								</div>
-								<br /> <br /> <label for="studentsComputerlanguage"
+								<span id=msgRelatedqualifications
+									style="font-size:13px; color:#0e90d2;"></span> <br /> <br />
+								<label for="studentsComputerlanguage"
 									class="am-u-sm-4 am-u-md-2 am-text-right">计算机语言类相关课程:</label>
 								<div class="am-u-sm-8 am-u-md-4" style="float:left">
 									<input type="text" name="studentsComputerlanguage"
-										id="studentsComputerlanguage" value="" placeholder="无/语言名称">
+										id="studentsComputerlanguage" value="" placeholder="无/语言名称"
+										onblur="checkstudentsComputerlanguage()">
 								</div>
+								<span id=msgComputerlanguage
+									style="font-size:13px; color:#0e90d2;"></span>
 							</div>
 
 							<div class="am-tab-panel am-fade" id="tab3">
@@ -277,9 +303,7 @@
 				</div>
 				<div class="am-margin">
 					<input type="submit" value="提交保存"
-						class="am-btn am-btn-primary am-btn-xs">
-					</button>
-					<button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+						class="am-btn am-btn-primary am-btn-xs" />
 				</div>
 			</form>
 		</div>
@@ -315,6 +339,8 @@
 	<!--<![endif]-->
 	<script src="assets/js/amazeui.min.js"></script>
 	<script src="assets/js/app.js"></script>
+	<script src="assets/js/formcheck.js"></script>
+
 	<script type="text/javascript">
 		$(function() {
 			$.ajax({
@@ -373,5 +399,6 @@
 			});
 		}
 	</script>
+
 </body>
 </html>
